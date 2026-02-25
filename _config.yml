@@ -1,9 +1,9 @@
 title: ALIEN REVISTA
 description: en contacto con la atmósfera
-theme: jekyll-theme-minimal  # o cámbialo a minima si querés más simple
-baseurl: "/Alien-Revista-2.0"  # importante para rutas
+theme: jekyll-theme-minimal
+baseurl: "/Alien-Revista-2.0"
 url: "https://alienrevista-nave.github.io"
-permalink: /:categories/:title/
-markdown: kramdown
-kramdown:
-  input: GFM
+
+sass:
+  sass_dir: assets/css
+  style: compressed
