@@ -60,29 +60,19 @@
         <a href="archivo-corrupto.html">Archivo corrupto</a>
         <a href="psicosis-colectiva.html">Psicosis colectiva</a>
         <a href="sin-ismos.html">Sin-ismos</a>
-        <a href="sueno-del-androide.html">El sueño del androide</a>
-        <a href="fuera-de-frecuencia.html">Fuera de frecuencia</a>
-        <a href="privacy.html">Privacy</a>
-    </nav>
+        <a href="sueno-del-androide.html">El sueño del androide</a>---
+layout: default
+---
 
-    <div class="hero">
-        <h1>ALIEN</h1>
-        <p style="color:#00ff00; font-size:1.8em; margin: 8px 0 0 0;">En contacto con la atmósfera.</p>
-        <p>Digital magazine of cinema, games, ideology, and resistance.</p>
+<h2>Entradas recientes – Issue #1</h2>
+
+<div class="posts">
+  {% for post in site.posts %}
+    <div class="post-card">
+      <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+      <p class="date">{{ post.date | date: "%d %B %Y" }}</p>
+      <p>{{ post.excerpt }}</p>
+      <a href="{{ post.url }}">leer completo</a>
     </div>
-
-    <div class="entradas">
-        <h2>Entradas recientes – Issue #1</h2>
-        <ul>
-            <li><a href="error-404-naturaleza-2-0.html">ERROR 404: Naturaleza 2.0 (incluye reel)</a></li>
-            <li><a href="psicosis-colectiva-amor-redes.html">Psicosis colectiva: El amor en tiempos de redes sociales – by Charo</a></li>
-            <li><a href="sueno-del-androide-videodrome.html">El sueño del androide: Videodrome – David Cronenberg</a></li>
-            <li><a href="archivo-corrupto-cupido.html">Archivo corrupto: Cupido 2.0</a></li>
-            <li><a href="sin-ismos-notas.html">Sin-ismos: Notas de opinión</a></li>
-            <li><a href="sin-ismos-futurismo.html">Sin-ismos: Futurismo – Marinetti</a></li>
-            <li><a href="sueno-del-androide-detroit.html">El sueño del androide: Detroit Become Human</a></li>
-        </ul>
-    </div>
-
-</body>
-</html>
+  {% endfor %}
+</div>
