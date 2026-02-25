@@ -6,12 +6,12 @@ body {
   padding: 0;
 }
 
-.header {
+.top-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px 20px;
-  border-bottom: 4px solid #00ff00;
+  border-bottom: 5px solid #00ff00;
   background: black;
   position: sticky;
   top: 0;
@@ -19,59 +19,51 @@ body {
 }
 
 .logo {
-  font-size: 2.8em;
+  font-size: 3.2em;
   color: #00ff00;
   font-weight: bold;
 }
 
-.alien {
-  margin-right: 12px;
-}
-
-.nav a {
+.nav-buttons a {
   color: #ff00ff;
   margin-left: 25px;
+  font-size: 1.1em;
   text-decoration: none;
 }
 
 .main-grid {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 30px auto;
-  padding: 0 20px;
   gap: 30px;
+  padding: 0 20px;
 }
 
-.post-card-big {
-  background: rgba(0, 255, 0, 0.06);
+.post-card {
+  background: rgba(0,255,0,0.06);
   border: 2px solid #00ff00;
-  padding: 30px;
+  padding: 25px;
 }
 
-.post-card-big h2 {
+.post-card h2 {
   color: #ff00ff;
-  font-size: 2.2em;
+  font-size: 2.4em;
 }
 
-.meta {
-  color: #00ff88;
-  margin-bottom: 20px;
-}
-
-.sidebar {
+.right-column {
   display: flex;
   flex-direction: column;
   gap: 25px;
 }
 
-.error-box, .spotify-box {
-  background: rgba(0, 255, 0, 0.04);
+.error-card, .spotify-card {
+  background: rgba(0,255,0,0.05);
   border: 2px solid #00ff00;
   padding: 20px;
 }
 
-.spotify-box p {
+.spotify-card p {
   color: #ff00ff;
   margin-bottom: 10px;
 }
