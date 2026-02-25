@@ -1,0 +1,27 @@
+body, html {
+  background-color: black !important;
+  color: #00ff00;
+  font-family: 'Courier New', Courier, monospace;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4 {
+  color: #ff00ff;
+}
+
+a {
+  color: #ff00ff;
+}
+
+.post-card, article {
+  background: rgba(0, 255, 0, 0.04);
+  border: 1px solid #00ff00;
+  padding: 25px;
+  margin: 20px 0;
+}
+
+pre {
+  white-space: pre-wrap;
+  color: #00ff88;
+}
