@@ -2,15 +2,43 @@
 layout: default
 ---
 
-<div style="max-width: 900px; margin: 0 auto; padding: 20px;">
-  <h2 style="color: #ff00ff; text-align: center;">Entradas recientes – Issue #1</h2>
+<div class="header">
+  <div class="logo">
+    <span class="alien">👽</span> ALIEN
+  </div>
+  <div class="nav">
+    <a href="#">ERROR 404</a>
+    <a href="#">Archivo corrupto</a>
+    <a href="#">Psicosis colectiva</a>
+    <a href="#">Sin-ismos</a>
+    <a href="#">El sueño del androide</a>
+    <a href="#">Fuera de frecuencia</a>
+  </div>
+</div>
 
-  {% for post in site.posts %}
-    <div style="background: rgba(0,255,0,0.05); border: 1px solid #00ff00; padding: 20px; margin-bottom: 30px; border-radius: 4px;">
-      <h3 style="color: #ff00ff;"><a href="{{ post.url }}" style="color: #ff00ff; text-decoration: none;">{{ post.title }}</a></h3>
-      <p style="color: #00ff88;">{{ post.date | date: "%d %B %Y" }} – {{ post.category }}</p>
-      <div style="color: #00ff00;">{{ post.excerpt | strip_html | truncate: 200 }}</div>
-      <a href="{{ post.url }}" style="color: #ff00ff;">leer completo</a>
+<div class="main-grid">
+  <!-- izquierda - entrada grande -->
+  <div class="post-main">
+    {% for post in site.posts limit:1 %}
+      <div class="post-card-big">
+        <h2>{{ post.title }}</h2>
+        <p class="meta">{{ post.date | date: "%d %B %Y" }} – {{ post.category }}</p>
+        <div class="content">{{ post.content }}</div>
+        <a href="{{ post.url }}" class="leer">leer completo</a>
+      </div>
+    {% endfor %}
+  </div>
+
+  <!-- derecha - sidebar -->
+  <div class="sidebar">
+    <div class="error-box">
+      <h3>ERROR 404</h3>
+      <!-- acá después ponés tu imagen -->
     </div>
-  {% endfor %}
+    
+    <div class="spotify-box">
+      <p>Fuera de frecuencia</p>
+      <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/57qxI5VqHjOi9sVwA03cWM?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
+  </div>
 </div>
