@@ -2,9 +2,9 @@
 layout: default
 ---
 
-<div class="top-bar">
+<div class="header">
   <div class="logo">👽 ALIEN</div>
-  <div class="nav-buttons">
+  <div class="nav">
     <a href="#">ERROR 404</a>
     <a href="#">Archivo corrupto</a>
     <a href="#">Psicosis colectiva</a>
@@ -13,29 +13,13 @@ layout: default
   </div>
 </div>
 
-<div class="main-grid">
-  <!-- izquierda: entrada grande estilo IG -->
-  <div class="left-post">
-    {% for post in site.posts limit:1 %}
-      <div class="post-card">
-        <h2>{{ post.title }}</h2>
-        <p class="meta">{{ post.date | date: "%d %B %Y" }} — {{ post.category }}</p>
-        <div class="post-content">{{ post.content }}</div>
-        <a href="{{ post.url }}" class="leer-mas">leer completo</a>
-      </div>
-    {% endfor %}
-  </div>
+<h2 style="color:#ff00ff; text-align:center; margin:40px 0 30px;">Entradas recientes – Issue #1</h2>
 
-  <!-- derecha: sidebar -->
-  <div class="right-column">
-    <div class="error-card">
-      <h3>ERROR 404</h3>
-      <!-- acá después ponés tu imagen grande -->
-    </div>
-    
-    <div class="spotify-card">
-      <p>Fuera de frecuencia</p>
-      <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/57qxI5VqHjOi9sVwA03cWM?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-    </div>
+{% for post in site.posts limit:1 %}
+  <div class="post-card">
+    <h3>{{ post.title }}</h3>
+    <p class="meta">{{ post.date | date: "%d %B %Y" }} — {{ post.category }}</p>
+    <div class="content">{{ post.content }}</div>
+    <a href="{{ post.url }}" class="leer">leer completo</a>
   </div>
-</div>
+{% endfor %}
