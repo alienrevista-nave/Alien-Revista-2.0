@@ -81,3 +81,6 @@ body {
     grid-template-columns: 1fr;
   }
 }
+.meta {
+  display: none;   /* esto oculta cualquier fecha que quede */
+}
