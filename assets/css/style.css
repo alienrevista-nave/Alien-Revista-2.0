@@ -1,32 +1,71 @@
+body {
+  background: black !important;
+  color: #00ff00;
+  font-family: 'Courier New', Courier, monospace;
+  margin: 0;
+  padding: 0;
+}
+
 .header {
   position: sticky;
   top: 0;
   background: black;
   border-bottom: 4px solid #00ff00;
-  padding: 12px 20px;
+  padding: 15px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 100;
 }
 
-.logo-link {
-  display: flex;
-  align-items: center;
-}
-
-.alien-icon {
-  height: 55px;
-  margin-right: 12px;
-}
-
-.alien-text {
-  height: 55px;
+.logo {
+  font-size: 2.8em;
+  color: #00ff00;
+  font-weight: bold;
 }
 
 .nav a {
   color: #ff00ff;
   margin-left: 25px;
   text-decoration: none;
-  font-size: 1.1em;
 }
+
+.main-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  max-width: 1300px;
+  margin: 30px auto;
+  gap: 30px;
+  padding: 0 20px;
+}
+
+.post-card {
+  background: rgba(0, 255, 0, 0.06);
+  border: 2px solid #00ff00;
+  padding: 25px;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.error-card, .spotify-card {
+  background: rgba(0,255,0,0.05);
+  border: 2px solid #00ff00;
+  padding: 20px;
+}
+
+.spotify-card p {
+  color: #ff00ff;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 900px) {
+  .main-grid {
+    grid-template-columns: 1fr;
+  }
+}
+}
+
