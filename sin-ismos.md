@@ -7,7 +7,7 @@ permalink: /sin-ismos/
 <h1 style="color:#ff00ff; text-align:center; font-size:3em; margin:40px 0;">Sin-ismos</h1>
 
 <div style="max-width:900px; margin:0 auto;">
-  {% for post in site.categories.Sin-ismos %}
+  {% for post in site.categories.sin-ismos %}
     <div class="post-card">
       <h2 style="color:#ff00ff;">{{ post.title }}</h2>
       <div class="content">{{ post.content }}</div>
