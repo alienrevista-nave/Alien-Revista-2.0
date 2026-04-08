@@ -7,7 +7,7 @@ permalink: /psicosis-colectiva/
 <h1 style="color:#ff00ff; text-align:center; font-size:3em; margin:40px 0;">Psicosis colectiva</h1>
 
 <div style="max-width:900px; margin:0 auto;">
-  {% for post in site.categories.Psicosis-colectiva %}
+  {% for post in site.categories.psicosis-colectiva %}
     <div class="post-card">
       <h2 style="color:#ff00ff;">{{ post.title }}</h2>
       <div class="content">{{ post.content }}</div>
