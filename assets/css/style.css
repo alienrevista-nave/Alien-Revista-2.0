@@ -5,7 +5,6 @@ body {
   margin: 0;
   padding: 0;
 }
-
 .header {
   position: sticky;
   top: 0;
@@ -13,9 +12,56 @@ body {
   border-bottom: 4px solid #00ff00;
   padding: 15px 20px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   z-index: 100;
+  flex-wrap: wrap;           /* permite que se acomode en móvil */
+  gap: 15px;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.alien-icon {
+  height: 58px;
+  margin-right: 12px;
+}
+
+.alien-text {
+  height: 58px;
+}
+
+/* MENÚ - más espaciado y limpio */
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;                 /* espacio entre botones */
+  justify-content: center;
+}
+
+.nav a {
+  color: #ff00ff;
+  text-decoration: none;
+  font-size: 1.05em;
+  white-space: nowrap;
+}
+
+.nav a:hover {
+  color: #00ff88;
+  text-shadow: 0 0 8px #00ff00;
+}
+
+/* En pantallas más chicas (móvil) */
+@media (max-width: 900px) {
+  .nav {
+    gap: 15px;
+    font-size: 0.95em;
+  }
+}
+
 }
 
 .logo {
