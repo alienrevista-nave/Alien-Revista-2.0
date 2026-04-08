@@ -7,7 +7,7 @@ permalink: /fuera-de-frecuencia/
 <h1 style="color:#ff00ff; text-align:center; font-size:3em; margin:40px 0;">Fuera de frecuencia</h1>
 
 <div style="max-width:900px; margin:0 auto;">
-  {% for post in site.categories.Fuera-de-frecuencia %}
+  {% for post in site.categories.fuera-de-frecuencia %}
     <div class="post-card">
       <h2 style="color:#ff00ff;">{{ post.title }}</h2>
       <div class="content">{{ post.content }}</div>
