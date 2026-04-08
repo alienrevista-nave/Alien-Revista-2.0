@@ -2,7 +2,7 @@
 layout: default
 ---
 
-<h2 style="color:#ff00ff; text-align:center; margin:40px 0 30px;">Entradas recientes – Issue #1</h2>
+<h2 style="color:#ff00ff; text-align:center; margin:40px 0 30px;">En contacto con la atmósfera</h2>
 
 <div class="main-grid">
   <!-- Columna izquierda: post con Reel arriba -->
