@@ -22,14 +22,14 @@ layout: default
         </iframe>
       </div>
 
-      <!-- Extracto corto -->
-      <div style="text-align:center; font-size:1.15em; line-height:1.6; margin-bottom:25px;">
+      <!-- Extracto corto (solo las 3 líneas) -->
+      <div style="text-align:center; font-size:1.15em; line-height:1.6; margin-bottom:30px;">
         somos creadores de contenido<br>
         y alimento del vacío<br>
         somos materialidad en suspenso
       </div>
 
-      <!-- Link correcto (dinámico) -->
+      <!-- Botón correcto -->
       <a href="{{ post.url }}" style="color:#ff00ff; font-size:1.2em;">leer completo →</a>
     </div>
   {% endfor %}
