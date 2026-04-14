@@ -5,23 +5,34 @@ layout: default
 <h2 style="color:#ff00ff; text-align:center; margin:40px 0 30px;">en contacto con la atmósfera</h2>
 
 <div class="main-grid">
-  {% for post in site.posts limit:1 %}
-    <div class="post-card">
 
-      <!-- Reel del post (primero y grande) -->
-      {{ post.content | split: '<pre' | first }}
-
-      <!-- Extracto corto para hype -->
-      <div class="excerpt" style="margin-top:30px;">
-        somos creadores de contenido<br>
-        y alimento del vacío<br>
-        somos materialidad en suspenso
-      </div>
-
-      <a href="{{ post.url }}" style="color:#ff00ff; font-size:1.1em; margin-top:20px; display:inline-block;">leer completo →</a>
+  <!-- POST CON REEL + TEXTO CORTO -->
+  <div class="post-card">
+    
+    <!-- Reel de Instagram -->
+    <div style="max-width: 540px; margin: 0 auto 25px; border: 3px solid #00ff00; border-radius: 8px; overflow: hidden;">
+      <iframe 
+        src="https://www.instagram.com/reel/DWP91WnAYQ5/embed" 
+        width="100%" 
+        height="750" 
+        frameborder="0" 
+        scrolling="no" 
+        allowtransparency="true"
+        style="max-width:100%; display:block;">
+      </iframe>
     </div>
-  {% endfor %}
 
+    <!-- Extracto corto -->
+    <div style="text-align:center; font-size:1.15em; line-height:1.6; margin-bottom:25px;">
+      somos creadores de contenido<br>
+      y alimento del vacío<br>
+      somos materialidad en suspenso
+    </div>
+
+    <a href="/2024/04/01/naturaleza-2-0/" style="color:#ff00ff; font-size:1.2em;">leer completo →</a>
+  </div>
+
+  <!-- Sidebar derecha -->
   <div class="sidebar">
     <div class="error-card">
       <h3>ERROR 404</h3>
@@ -32,4 +43,5 @@ layout: default
       <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/57qxI5VqHjOi9sVwA03cWM?utm_source=generator&theme=0" width="100%" height="352" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
     </div>
   </div>
+
 </div>
