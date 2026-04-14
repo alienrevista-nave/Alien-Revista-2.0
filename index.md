@@ -9,7 +9,6 @@ layout: default
     <div class="post-card">
       <h3 style="color:#ff00ff;">{{ post.title }}</h3>
       
-      <!-- Extracto corto para hype -->
       <div class="excerpt">
         somos creadores de contenido<br>
         y alimento del vacío<br>
@@ -20,7 +19,6 @@ layout: default
     </div>
   {% endfor %}
 
-  <!-- Sidebar derecha -->
   <div class="sidebar">
     <div class="error-card">
       <h3>ERROR 404</h3>
