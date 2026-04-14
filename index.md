@@ -7,15 +7,18 @@ layout: default
 <div class="main-grid">
   {% for post in site.posts limit:1 %}
     <div class="post-card">
-      <h3 style="color:#ff00ff;">{{ post.title }}</h3>
-      
-      <div class="excerpt">
+
+      <!-- Reel del post (primero y grande) -->
+      {{ post.content | split: '<pre' | first }}
+
+      <!-- Extracto corto para hype -->
+      <div class="excerpt" style="margin-top:30px;">
         somos creadores de contenido<br>
         y alimento del vacío<br>
         somos materialidad en suspenso
       </div>
 
-      <a href="{{ post.url }}" style="color:#ff00ff; font-size:1.1em;">leer completo →</a>
+      <a href="{{ post.url }}" style="color:#ff00ff; font-size:1.1em; margin-top:20px; display:inline-block;">leer completo →</a>
     </div>
   {% endfor %}
 
