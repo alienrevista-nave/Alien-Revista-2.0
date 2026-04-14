@@ -6,33 +6,35 @@ layout: default
 
 <div class="main-grid">
 
-  <!-- POST CON REEL + TEXTO CORTO -->
-  <div class="post-card">
-    
-    <!-- Reel de Instagram -->
-    <div style="max-width: 540px; margin: 0 auto 25px; border: 3px solid #00ff00; border-radius: 8px; overflow: hidden;">
-      <iframe 
-        src="https://www.instagram.com/reel/DWP91WnAYQ5/embed" 
-        width="100%" 
-        height="750" 
-        frameborder="0" 
-        scrolling="no" 
-        allowtransparency="true"
-        style="max-width:100%; display:block;">
-      </iframe>
+  {% for post in site.posts limit:1 %}
+    <div class="post-card">
+      
+      <!-- Reel -->
+      <div style="max-width: 540px; margin: 0 auto 25px; border: 3px solid #00ff00; border-radius: 8px; overflow: hidden;">
+        <iframe 
+          src="https://www.instagram.com/reel/DWP91WnAYQ5/embed" 
+          width="100%" 
+          height="750" 
+          frameborder="0" 
+          scrolling="no" 
+          allowtransparency="true"
+          style="max-width:100%; display:block;">
+        </iframe>
+      </div>
+
+      <!-- Extracto corto -->
+      <div style="text-align:center; font-size:1.15em; line-height:1.6; margin-bottom:25px;">
+        somos creadores de contenido<br>
+        y alimento del vacío<br>
+        somos materialidad en suspenso
+      </div>
+
+      <!-- Link correcto y dinámico -->
+      <a href="{{ post.url }}" style="color:#ff00ff; font-size:1.2em;">leer completo →</a>
     </div>
+  {% endfor %}
 
-    <!-- Extracto corto -->
-    <div style="text-align:center; font-size:1.15em; line-height:1.6; margin-bottom:25px;">
-      somos creadores de contenido<br>
-      y alimento del vacío<br>
-      somos materialidad en suspenso
-    </div>
-
-    <a href="/2024/04/01/naturaleza-2-0/" style="color:#ff00ff; font-size:1.2em;">leer completo →</a>
-  </div>
-
-  <!-- Sidebar derecha -->
+  <!-- Sidebar -->
   <div class="sidebar">
     <div class="error-card">
       <h3>ERROR 404</h3>
