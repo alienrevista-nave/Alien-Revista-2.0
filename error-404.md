@@ -23,7 +23,7 @@ permalink: /error-404/
         </iframe>
       </div>
 
-      <!-- Extracto corto -->
+      <!-- Extracto corto (solo las 3 líneas) -->
       <div style="text-align:center; font-size:1.15em; line-height:1.6; margin-bottom:30px;">
         somos creadores de contenido<br>
         y alimento del vacío<br>
