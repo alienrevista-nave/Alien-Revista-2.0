@@ -29,7 +29,7 @@ layout: default
         somos materialidad en suspenso
       </div>
 
-      <!-- Link correcto y dinámico -->
+      <!-- Link correcto (dinámico) -->
       <a href="{{ post.url }}" style="color:#ff00ff; font-size:1.2em;">leer completo →</a>
     </div>
   {% endfor %}
