@@ -22,15 +22,19 @@ layout: default
         </iframe>
       </div>
 
-      <!-- Extracto corto (solo las 3 líneas) -->
-      <div style="text-align:center; font-size:1.15em; line-height:1.6; margin-bottom:30px;">
+      <!-- Extracto corto -->
+      <div style="text-align:center; font-size:1.15em; line-height:1.6; margin-bottom:35px;">
         somos creadores de contenido<br>
         y alimento del vacío<br>
         somos materialidad en suspenso
       </div>
 
-      <!-- Botón correcto -->
-      <a href="{{ post.url }}" style="color:#ff00ff; font-size:1.2em;">leer completo →</a>
+      <!-- Botón centrado y bonito -->
+      <div style="text-align:center;">
+        <a href="{{ post.url }}" style="color:#ff00ff; font-size:1.2em; padding:10px 30px; border:2px solid #ff00ff; border-radius:6px; text-decoration:none;">
+          leer completo →
+        </a>
+      </div>
     </div>
   {% endfor %}
 
