@@ -9,9 +9,28 @@ permalink: /error-404/
 <div style="max-width:900px; margin:0 auto;">
   {% for post in site.categories.error-404 %}
     <div class="post-card">
-      <h2 style="color:#ff00ff;">{{ post.title }}</h2>
-      <div class="content">{{ post.content }}</div>
-      <a href="{{ post.url }}" style="color:#ff00ff;">leer completo →</a>
+      
+      <!-- Reel -->
+      <div style="max-width: 540px; margin: 0 auto 25px; border: 3px solid #00ff00; border-radius: 8px; overflow: hidden;">
+        <iframe 
+          src="https://www.instagram.com/reel/DWP91WnAYQ5/embed" 
+          width="100%" 
+          height="750" 
+          frameborder="0" 
+          scrolling="no" 
+          allowtransparency="true"
+          style="max-width:100%; display:block;">
+        </iframe>
+      </div>
+
+      <!-- Extracto corto -->
+      <div style="text-align:center; font-size:1.15em; line-height:1.6; margin-bottom:30px;">
+        somos creadores de contenido<br>
+        y alimento del vacío<br>
+        somos materialidad en suspenso
+      </div>
+
+      <a href="{{ post.url }}" style="color:#ff00ff; font-size:1.2em;">leer completo →</a>
     </div>
   {% endfor %}
 </div>
