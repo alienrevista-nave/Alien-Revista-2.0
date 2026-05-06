@@ -12,16 +12,41 @@
       <img src="{{ '/assets/alien-icon.png' | relative_url }}" alt="Alien" class="alien-icon">
       <img src="{{ '/assets/alien-text.png' | relative_url }}" alt="ALIEN" class="alien-text">
     </a>
-    <div class="nav">
-      <a href="/error-404/">ERROR 404</a>
-      <a href="/archivo-corrupto/">Archivo corrupto</a>
-      <a href="/psicosis-colectiva/">Psicosis colectiva</a>
-      <a href="/sin-ismos/">Sin-ismos</a>
-      <a href="/sueno-del-androide/">El sueño del androide</a>
-      <a href="/game-over/">Game Over</a>
-      <a href="/fahrenheit/">Fahrenheit</a>
-      <a href="/fuera-de-frecuencia/">Fuera de frecuencia</a>
-    </div>
+
+    <input type="checkbox" id="menu-toggle" class="menu-toggle">
+    <label for="menu-toggle" class="hamburger">☰</label>
+
+    <nav class="nav">
+      <div class="dropdown">
+        <a href="#">Ficción</a>
+        <div class="dropdown-content">
+          <a href="#">Cuentos</a>
+          <a href="#">Comics</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <a href="#">No Ficción</a>
+        <div class="dropdown-content">
+          <a href="#">Crónicas Terrestres</a>
+          <a href="/error-404/">Error 404</a>
+          <a href="/archivo-corrupto/">Archivo corrupto</a>
+          <a href="/psicosis-colectiva/">Psicosis colectiva</a>
+          <a href="/sin-ismos/">Sin-ismos</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <a href="#">Reseñas</a>
+        <div class="dropdown-content">
+          <a href="/game-over/">Game Over</a>
+          <a href="/fahrenheit/">Fahrenheit</a>
+          <a href="/sueno-del-androide/">El sueño del androide</a>
+        </div>
+      </div>
+
+      <a href="/frecuencias/">Frecuencias</a>
+    </nav>
   </header>
 
   {{ content }}
