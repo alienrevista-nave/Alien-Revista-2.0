@@ -46,17 +46,31 @@ body {
   padding: 8px 0;
 }
 
+.dropdown {
+  position: relative;
+}
+
 .dropdown-content {
   display: none;
   position: absolute;
   background: black;
   border: 2px solid #00ff00;
-  min-width: 200px;
+  min-width: 220px;
   top: 100%;
   left: 0;
   padding: 12px 0;
   box-shadow: 0 0 15px rgba(0,255,0,0.4);
   z-index: 200;
+}
+
+/* Corrección para los dropdowns de la derecha */
+.dropdown:last-child .dropdown-content {
+  left: auto;
+  right: 0;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
 }
 
 .dropdown:hover .dropdown-content {
