@@ -1,6 +1,49 @@
-/* Dropdown mejorado - click para abrir */
+body {
+  background: black !important;
+  color: #00ff00;
+  font-family: 'Courier New', Courier, monospace;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+/* HEADER */
+.header {
+  position: sticky;
+  top: 0;
+  background: black;
+  border-bottom: 4px solid #00ff00;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+}
+
+.alien-icon { height: 58px; margin-right: 12px; }
+.alien-text { height: 58px; }
+
+/* Menú con hover */
+.nav {
+  display: flex;
+  gap: 35px;
+  align-items: center;
+}
+
 .dropdown {
   position: relative;
+}
+
+.dropbtn {
+  color: #ff00ff;
+  text-decoration: none;
+  font-size: 1.1em;
+  padding: 8px 0;
 }
 
 .dropdown-content {
@@ -8,25 +51,32 @@
   position: absolute;
   background: black;
   border: 2px solid #00ff00;
-  min-width: 220px;
+  min-width: 200px;
   top: 100%;
   left: 0;
   padding: 12px 0;
-  box-shadow: 0 0 20px rgba(0,255,0,0.4);
+  box-shadow: 0 0 15px rgba(0,255,0,0.4);
   z-index: 200;
 }
 
-.dropdown.active .dropdown-content {
+.dropdown:hover .dropdown-content {
   display: block;
 }
 
-.dropdown-link {
-  cursor: pointer;
+.dropdown-content a {
+  display: block;
+  padding: 10px 20px;
+  color: #00ff00;
+  text-decoration: none;
 }
 
-/* Móvil - click para abrir */
+.dropdown-content a:hover {
+  background: rgba(0,255,0,0.1);
+  color: #00ff88;
+}
+
+/* Móvil */
 @media (max-width: 900px) {
-  .hamburger { display: block; }
   .nav {
     display: none;
     flex-direction: column;
@@ -38,6 +88,14 @@
     padding: 20px;
     border-top: 4px solid #00ff00;
   }
+
+  .hamburger {
+    font-size: 2.2em;
+    color: #ff00ff;
+    cursor: pointer;
+    display: block;
+  }
+
   .menu-toggle:checked ~ .nav {
     display: flex;
   }
