@@ -1,149 +1,44 @@
-body {
-  background: black !important;
-  color: #00ff00;
-  font-family: 'Courier New', Courier, monospace;
-  margin: 0;
-  padding: 0;
+/* Dropdown mejorado - click para abrir */
+.dropdown {
+  position: relative;
 }
-.header {
-  position: sticky;
-  top: 0;
+
+.dropdown-content {
+  display: none;
+  position: absolute;
   background: black;
-  border-bottom: 4px solid #00ff00;
-  padding: 15px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  z-index: 100;
-  flex-wrap: wrap;           /* permite que se acomode en móvil */
-  gap: 15px;
+  border: 2px solid #00ff00;
+  min-width: 220px;
+  top: 100%;
+  left: 0;
+  padding: 12px 0;
+  box-shadow: 0 0 20px rgba(0,255,0,0.4);
+  z-index: 200;
 }
 
-.logo-link {
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
+.dropdown.active .dropdown-content {
+  display: block;
 }
 
-.alien-icon {
-  height: 58px;
-  margin-right: 12px;
+.dropdown-link {
+  cursor: pointer;
 }
 
-.alien-text {
-  height: 58px;
-}
-
-/* MENÚ - más espaciado y limpio */
-.nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 22px;                 /* espacio entre botones */
-  justify-content: center;
-}
-
-.nav a {
-  color: #ff00ff;
-  text-decoration: none;
-  font-size: 1.05em;
-  white-space: nowrap;
-}
-
-.nav a:hover {
-  color: #00ff88;
-  text-shadow: 0 0 8px #00ff00;
-}
-
-/* En pantallas más chicas (móvil) */
+/* Móvil - click para abrir */
 @media (max-width: 900px) {
+  .hamburger { display: block; }
   .nav {
-    gap: 15px;
-    font-size: 0.95em;
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    background: black;
+    padding: 20px;
+    border-top: 4px solid #00ff00;
   }
-}
-
-}
-
-.logo {
-  font-size: 2.8em;
-  color: #00ff00;
-  font-weight: bold;
-}
-
-.nav a {
-  color: #ff00ff;
-  margin-left: 25px;
-  text-decoration: none;
-}
-
-.main-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  max-width: 1300px;
-  margin: 30px auto;
-  gap: 30px;
-  padding: 0 20px;
-}
-
-.post-card {
-  background: rgba(0, 255, 0, 0.06);
-  border: 2px solid #00ff00;
-  padding: 25px;
-}
-
-.sidebar {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-}
-
-.error-card, .spotify-card {
-  background: rgba(0,255,0,0.05);
-  border: 2px solid #00ff00;
-  padding: 20px;
-}
-
-.spotify-card p {
-  color: #ff00ff;
-  margin-bottom: 10px;
-}
-
-@media (max-width: 900px) {
-  .main-grid {
-    grid-template-columns: 1fr;
+  .menu-toggle:checked ~ .nav {
+    display: flex;
   }
-}
-}
-
-.header {
-  position: sticky;
-  top: 0;
-  background: black;
-  border-bottom: 4px solid #00ff00;
-  padding: 12px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 100;
-}
-
-.logo-link {
-  display: flex;
-  align-items: center;
-}
-
-.alien-icon {
-  height: 58px;
-  margin-right: 12px;
-}
-
-.alien-text {
-  height: 58px;
-}
-
-.nav a {
-  color: #ff00ff;
-  margin-left: 25px;
-  text-decoration: none;
-  font-size: 1.1em;
 }
