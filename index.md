@@ -29,7 +29,6 @@ layout: default
         somos materialidad en suspenso
       </div>
 
-      <!-- Botón centrado y bonito -->
       <div style="text-align:center;">
         <a href="{{ post.url }}" style="color:#ff00ff; font-size:1.2em; padding:10px 30px; border:2px solid #ff00ff; border-radius:6px; text-decoration:none;">
           leer completo →
@@ -38,10 +37,11 @@ layout: default
     </div>
   {% endfor %}
 
-  <!-- Sidebar -->
+  <!-- BARRA LATERAL -->
   <div class="sidebar">
     <div class="error-card">
       <h3>ERROR 404</h3>
+      <!-- Aquí podés poner después una imagen o texto de propaganda -->
     </div>
     
     <div class="spotify-card">
