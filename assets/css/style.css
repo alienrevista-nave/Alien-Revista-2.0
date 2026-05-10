@@ -93,16 +93,14 @@ body {
   color: #fff;
 }
 
-/* ==================== MOBILE ==================== */
+/* ==================== MENÚ MÓVIL MEJORADO ==================== */
+.nav {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
 @media (max-width: 992px) {
-  .header-content {
-    justify-content: space-between;
-  }
-
-  .tagline {
-    font-size: 1.05em;
-  }
-
   .nav {
     display: none;
     flex-direction: column;
@@ -110,26 +108,27 @@ body {
     top: 100%;
     left: 0;
     width: 100%;
-    background: #000;
-    padding: 20px;
+    background: #000000;
+    padding: 25px 20px;
     border-top: 4px solid #00ff00;
-    gap: 10px;
+    gap: 12px;
   }
 
   .hamburger {
     display: block;
   }
 
-  .menu-toggle:checked ~ .nav {
+  /* Cuando se active el checkbox */
+  #menu-toggle:checked ~ .nav {
     display: flex;
   }
 
   .nav-btn {
     text-align: center;
-    padding: 15px;
+    padding: 16px;
+    font-size: 1.1em;
   }
 }
-
 /* ==================== HOME ==================== */
 .main-grid {
   display: grid;
