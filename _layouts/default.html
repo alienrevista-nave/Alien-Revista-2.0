@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ site.title }}</title>
+  <title>{{ site.title | default: "ALIEN REVISTA" }}</title>
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 </head>
 <body>
@@ -13,39 +13,19 @@
       <img src="{{ '/assets/alien-text.png' | relative_url }}" alt="ALIEN" class="alien-text">
     </a>
 
+    <!-- Tagline -->
+    <div class="tagline">en contacto con la atmósfera</div>
+
+    <!-- Menú hamburguesa -->
     <input type="checkbox" id="menu-toggle" class="menu-toggle">
     <label for="menu-toggle" class="hamburger">☰</label>
 
+    <!-- Navegación -->
     <nav class="nav">
-      <div class="dropdown">
-        <a href="#">Ficción</a>
-        <div class="dropdown-content">
-          <a href="#">Cuentos</a>
-          <a href="#">Comics</a>
-        </div>
-      </div>
-
-      <div class="dropdown">
-        <a href="#">No Ficción</a>
-        <div class="dropdown-content">
-          <a href="#">Crónicas Terrestres</a>
-          <a href="/error-404/">Error 404</a>
-          <a href="/archivo-corrupto/">Archivo corrupto</a>
-          <a href="/psicosis-colectiva/">Psicosis colectiva</a>
-          <a href="/sin-ismos/">Sin-ismos</a>
-        </div>
-      </div>
-
-      <div class="dropdown">
-        <a href="#">Reseñas</a>
-        <div class="dropdown-content">
-          <a href="/game-over/">Game Over</a>
-          <a href="/fahrenheit/">Fahrenheit</a>
-          <a href="/sueno-del-androide/">El sueño del androide</a>
-        </div>
-      </div>
-
-      <a href="/frecuencias/">Frecuencias</a>
+      <a href="#" class="nav-btn">Ficción</a>
+      <a href="#" class="nav-btn">No Ficción</a>
+      <a href="#" class="nav-btn">Reseñas</a>
+      <a href="/frecuencias/" class="nav-btn">Frecuencias</a>
     </nav>
   </header>
 
