@@ -26,12 +26,33 @@
     </label>
 
     <!-- Navegación principal -->
-    <nav class="nav">
-      <a href="#" class="nav-btn">Ficción</a>
-      <a href="#" class="nav-btn">No Ficción</a>
-      <a href="#" class="nav-btn">Reseñas</a>
-      <a href="/frecuencias/" class="nav-btn">Frecuencias</a>
-    </nav>
+<nav class="nav">
+  <div class="menu-item">
+    <a href="#" class="nav-btn">Ficción</a>
+    <div class="submenu">
+      <a href="#">Cuentos</a>
+      <a href="#">Comics</a>
+    </div>
+  </div>
+  <div class="menu-item">
+    <a href="#" class="nav-btn">No Ficción</a>
+    <div class="submenu">
+      <a href="/error-404/">Error 404</a>
+      <a href="#">Crónicas Alienígenas</a>
+      <a href="#">Psicosis Colectiva</a>
+      <!-- agrega las demás -->
+    </div>
+  </div>
+  <div class="menu-item">
+    <a href="#" class="nav-btn">Reseñas</a>
+    <div class="submenu">
+      <a href="#">Game Over</a>
+      <a href="#">Fahrenheit</a>
+      <a href="#">El sueño del androide</a>
+    </div>
+  </div>
+  <a href="/frecuencias/" class="nav-btn">Frecuencias</a>
+</nav>
   </header>
 
   {{ content }}
