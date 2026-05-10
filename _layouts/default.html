@@ -9,7 +9,6 @@
 <body>
   <header class="header">
     <div class="header-content">
-      <!-- Logo + Tagline -->
       <div class="logo-group">
         <a href="/" class="logo-link">
           <img src="{{ '/assets/alien-icon.png' | relative_url }}" alt="Alien" class="alien-icon">
@@ -18,14 +17,12 @@
         <div class="tagline">En contacto con la atmósfera</div>
       </div>
 
-      <!-- Ovni menú -->
       <input type="checkbox" id="menu-toggle" class="menu-toggle">
       <label for="menu-toggle" class="hamburger">
         <img src="{{ '/assets/ufo.png' | relative_url }}" alt="Menú" class="ufo-icon">
       </label>
     </div>
 
-    <!-- Navegación (sin Frecuencias) -->
     <nav class="nav">
       <a href="#" class="nav-btn">Ficción</a>
       <a href="#" class="nav-btn">No Ficción</a>
@@ -34,5 +31,6 @@
   </header>
 
   {{ content }}
+
 </body>
 </html>
