@@ -12,7 +12,7 @@ body {
   top: 0;
   background: #000;
   border-bottom: 4px solid #00ff00;
-  padding: 10px 20px;
+  padding: 12px 20px;
   z-index: 100;
 }
 
@@ -21,8 +21,7 @@ body {
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 15px;
-  margin-bottom: 8px;
+  gap: 12px;
 }
 
 .logo-link {
@@ -31,18 +30,18 @@ body {
   text-decoration: none;
 }
 
-.alien-icon { height: 52px; margin-right: 10px; }
-.alien-text { height: 52px; }
+.alien-icon { height: 55px; margin-right: 10px; }
+.alien-text { height: 55px; }
 
 .tagline {
   color: #ff00ff;
-  font-size: 1.2em;
-  letter-spacing: 3px;
+  font-size: 1.18em;
+  letter-spacing: 3.5px;
   text-transform: uppercase;
   text-align: center;
 }
 
-/* Ovni con glow */
+/* Ovni */
 .hamburger {
   display: none;
   cursor: pointer;
@@ -50,50 +49,54 @@ body {
 }
 
 .ufo-icon {
-  height: 48px;
-  filter: drop-shadow(0 0 8px #00ff00) drop-shadow(0 0 15px #ff00ff);
-  transition: transform 0.4s ease;
+  height: 52px;
+  filter: drop-shadow(0 0 6px #00ff00) 
+          drop-shadow(0 0 12px #ff00ff) 
+          drop-shadow(0 0 20px #00ffff);
+  transition: all 0.4s ease;
 }
 
 .hamburger:hover .ufo-icon {
-  transform: rotate(15deg) scale(1.1);
+  transform: rotate(25deg) scale(1.08);
 }
 
 /* Botones desktop */
 .nav {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   justify-content: center;
   flex-wrap: wrap;
+  margin-top: 8px;
 }
 
 .nav-btn {
   background: #00ff00;
   color: #000;
-  padding: 10px 20px;
+  padding: 11px 22px;
   border-radius: 6px;
   text-decoration: none;
   font-weight: bold;
+  font-size: 1.05em;
   transition: all 0.3s;
 }
 
 .nav-btn:hover {
   background: #ff00ff;
-  color: white;
-  transform: translateY(-3px);
+  color: #fff;
+  transform: translateY(-2px);
 }
 
 /* ==================== MOBILE ==================== */
 @media (max-width: 992px) {
   .header-inner {
     justify-content: space-between;
-    margin-bottom: 0;
+    width: 100%;
   }
   
   .tagline {
     width: 100%;
     order: 3;
-    margin-top: 8px;
+    margin-top: 6px;
     font-size: 1.05em;
   }
   
@@ -105,9 +108,9 @@ body {
     left: 0;
     width: 100%;
     background: #000;
-    padding: 20px;
+    padding: 25px 20px;
     border-top: 4px solid #00ff00;
-    gap: 8px;
+    gap: 10px;
   }
   
   .hamburger {
@@ -120,7 +123,7 @@ body {
   
   .nav-btn {
     text-align: center;
-    padding: 14px;
-    font-size: 1.1em;
+    padding: 15px;
+    font-size: 1.12em;
   }
 }
