@@ -1,33 +1,28 @@
-<script>
-  document.querySelectorAll('.main-category').forEach(button => {
-    button.addEventListener('click', function(e) {
-      if (window.innerWidth > 992) return;
-      e.preventDefault();
-      const parent = this.parentElement;
-      parent.classList.toggle('active');
-    });
-  });
-</script>
+/* ==================== RESET GLOBAL ==================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 body {
   background: #000000 !important;
   color: #00ff00;
   font-family: 'Courier New', Courier, monospace;
-  margin: 0;
-  padding: 0;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
-/* Eliminar cualquier fondo blanco que pueda venir de Jekyll o browsers */
-main, .main-grid, article, section {
-  background: #000000;
+/* Forzar negro en todo el contenido */
+main, .main-grid, article, section, div, .post-card, .sidebar {
+  background: #000000 !important;
 }
 
 /* ==================== HEADER ==================== */
 .header {
   position: sticky;
   top: 0;
-  background: #000;
+  background: #000000 !important;
   border-bottom: 4px solid #00ff00;
   padding: 15px 20px;
   z-index: 100;
@@ -106,7 +101,7 @@ main, .main-grid, article, section {
   .header-content {
     justify-content: space-between;
   }
-  
+ 
   .tagline {
     font-size: 1.05em;
     width: 100%;
@@ -114,7 +109,7 @@ main, .main-grid, article, section {
     margin-top: 8px;
     text-align: center;
   }
-  
+ 
   .nav {
     display: none;
     flex-direction: column;
@@ -122,30 +117,20 @@ main, .main-grid, article, section {
     top: 100%;
     left: 0;
     width: 100%;
-    background: #000;
+    background: #000000 !important;
     padding: 20px;
     border-top: 4px solid #00ff00;
     gap: 10px;
   }
-  
+ 
   .hamburger {
     display: block;
   }
-  
+ 
   .menu-toggle:checked ~ .nav {
     display: flex;
   }
-  
+ 
   .nav-btn {
     text-align: center;
-    padding: 15px;
-  }
-}
-
-/* ELIMINAR CUADRADITO BLANCO DEFINITIVAMENTE */
-.menu-toggle {
-  display: none !important;
-  position: absolute;
-  opacity: 0;
-  visibility: hidden;
-}
+    padding
