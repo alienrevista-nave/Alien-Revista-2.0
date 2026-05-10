@@ -25,16 +25,23 @@ body {
   top: 0;
   background: #000;
   border-bottom: 4px solid #00ff00;
-  padding: 12px 20px;
+  padding: 15px 20px;
   z-index: 100;
 }
 
-.header-inner {
+.header-content {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 15px;
+}
+
+.logo-group {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex: 1;
 }
 
 .logo-link { display: flex; align-items: center; text-decoration: none; }
@@ -43,36 +50,32 @@ body {
 
 .tagline {
   color: #ff00ff;
-  font-size: 1.18em;
-  letter-spacing: 3.5px;
+  font-size: 1.2em;
+  letter-spacing: 3px;
   text-transform: uppercase;
-  text-align: center;
 }
 
 /* Ovni */
 .hamburger {
   display: none;
   cursor: pointer;
-  margin-left: auto;
 }
 
 .ufo-icon {
-  height: 52px;
+  height: 50px;
   filter: drop-shadow(0 0 4px #00ff00) drop-shadow(0 0 8px #ff00ff);
-  transition: all 0.4s ease;
+  transition: all 0.4s;
 }
 
 .hamburger:hover .ufo-icon {
   transform: rotate(20deg) scale(1.1);
 }
 
-/* Botones principales */
+/* Navegación Desktop */
 .nav {
   display: flex;
-  gap: 10px;
-  justify-content: center;
+  gap: 12px;
   flex-wrap: wrap;
-  margin-top: 8px;
 }
 
 .nav-btn {
@@ -83,23 +86,27 @@ body {
   text-decoration: none;
   font-weight: bold;
   transition: all 0.3s;
-  text-align: center;
 }
 
-/* ==================== MENÚ MÓVIL ==================== */
+.nav-btn:hover {
+  background: #ff00ff;
+  color: white;
+}
+
+/* ==================== MOBILE ==================== */
 @media (max-width: 992px) {
-  .header-inner {
+  .header-content {
     justify-content: space-between;
-    width: 100%;
+  }
+  
+  .logo-group {
+    flex: 1;
   }
   
   .tagline {
-    width: 100%;
-    order: 3;
-    margin-top: 6px;
     font-size: 1.05em;
   }
-
+  
   .nav {
     display: none;
     flex-direction: column;
@@ -110,46 +117,26 @@ body {
     background: #000;
     padding: 20px;
     border-top: 4px solid #00ff00;
-    gap: 12px;
+    gap: 10px;
   }
-
-  .hamburger { display: block; }
-
+  
+  .hamburger {
+    display: block;
+  }
+  
   .menu-toggle:checked ~ .nav {
     display: flex;
   }
-
-  /* Accordion */
-  .menu-item {
-    width: 100%;
+  
+  .nav-btn {
+    text-align: center;
+    padding: 15px;
   }
+}
 
-  .main-category {
-    width: 100%;
-    margin-bottom: 4px;
-  }
-
-  .submenu {
-    display: none;
-    flex-direction: column;
-    padding-left: 20px;
-    gap: 8px;
-    border-left: 3px solid #ff00ff;
-    margin-top: 8px;
-  }
-
-  .menu-item.active .submenu {
-    display: flex;
-  }
-
-  .submenu a {
-    color: #00ff88;
-    text-decoration: none;
-    padding: 6px 0;
-    font-size: 1em;
-  }
-
-  .submenu a:hover {
-    color: #ff00ff;
-  }
+/* OCULTAR CHECKBOX PARA SIEMPRE */
+.menu-toggle {
+  display: none !important;
+  visibility: hidden;
+  position: absolute;
 }
