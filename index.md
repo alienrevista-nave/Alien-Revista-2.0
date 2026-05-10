@@ -42,7 +42,7 @@ layout: default
     </div>
    
     <div class="spotify-card">
-      <p style="color:#ff00ff; margin-bottom:10px;">Fuera de frecuencia</p>
+      <p style="color:#ff00ff; margin-bottom:10px;">Frecuencias</p>
       <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/57qxI5VqHjOi9sVwA03cWM?utm_source=generator&theme=0" width="100%" height="352" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
     </div>
   </div>
