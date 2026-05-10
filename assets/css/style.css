@@ -10,14 +10,18 @@
 </script>
 
 body {
-  background: black !important;
+  background: #000000 !important;
   color: #00ff00;
   font-family: 'Courier New', Courier, monospace;
   margin: 0;
   padding: 0;
-  line-height: 1.6;
+  min-height: 100vh;
 }
 
+/* Eliminar cualquier fondo blanco que pueda venir de Jekyll o browsers */
+main, .main-grid, article, section {
+  background: #000000;
+}
 
 /* ==================== HEADER ==================== */
 .header {
