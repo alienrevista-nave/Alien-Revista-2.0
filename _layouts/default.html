@@ -6,69 +6,32 @@
   <title>{{ site.title | default: "ALIEN REVISTA" }}</title>
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 </head>
-
-  <script>
-document.querySelectorAll('.main-category').forEach(btn => {
-  btn.addEventListener('click', function(e) {
-    if (window.innerWidth > 992) return; // solo en móvil
-    e.preventDefault();
-    const item = this.parentElement;
-    item.classList.toggle('active');
-  });
-});
-</script>
 <body>
   <header class="header">
-    <div class="header-inner">
-      <!-- Logo -->
-      <a href="/" class="logo-link">
-        <img src="{{ '/assets/alien-icon.png' | relative_url }}" alt="Alien" class="alien-icon">
-        <img src="{{ '/assets/alien-text.png' | relative_url }}" alt="ALIEN" class="alien-text">
-      </a>
+    <div class="header-content">
+      <!-- Logo + Tagline -->
+      <div class="logo-group">
+        <a href="/" class="logo-link">
+          <img src="{{ '/assets/alien-icon.png' | relative_url }}" alt="Alien" class="alien-icon">
+          <img src="{{ '/assets/alien-text.png' | relative_url }}" alt="ALIEN" class="alien-text">
+        </a>
+        <div class="tagline">EN CONTACTO CON LA ATMÓSFERA</div>
+      </div>
 
-      <!-- Tagline -->
-      <div class="tagline">EN CONTACTO CON LA ATMÓSFERA</div>
+      <!-- Ovni menú (solo móvil) -->
+      <input type="checkbox" id="menu-toggle" class="menu-toggle">
+      <label for="menu-toggle" class="hamburger">
+        <img src="{{ '/assets/ufo.png' | relative_url }}" alt="Menú" class="ufo-icon">
+      </label>
     </div>
 
-    <!-- Ovni menú -->
-    <input type="checkbox" id="menu-toggle" class="menu-toggle">
-    <label for="menu-toggle" class="hamburger">
-      <img src="{{ '/assets/ufo.png' | relative_url }}" alt="Menú" class="ufo-icon">
-    </label>
-
-    <!-- Navegación principal -->
-
+    <!-- Navegación -->
     <nav class="nav">
-  <div class="menu-item">
-    <a href="#" class="nav-btn main-category">Ficción</a>
-    <div class="submenu">
-      <a href="#">Cuentos</a>
-      <a href="#">Comics</a>
-    </div>
-  </div>
-
-  <div class="menu-item">
-    <a href="#" class="nav-btn main-category">No Ficción</a>
-    <div class="submenu">
-      <a href="/error-404/">Error 404</a>
-      <a href="#">Crónicas Alienígenas</a>
-      <a href="#">Psicosis Colectiva</a>
-      <a href="#">Sin-ismos</a>
-      <a href="#">Archivo Corrupto</a>
-    </div>
-  </div>
-
-  <div class="menu-item">
-    <a href="#" class="nav-btn main-category">Reseñas</a>
-    <div class="submenu">
-      <a href="#">Game Over</a>
-      <a href="#">Fahrenheit</a>
-      <a href="#">El sueño del androide</a>
-    </div>
-  </div>
-
-  <a href="/frecuencias/" class="nav-btn main-category">Frecuencias</a>
-</nav>
+      <a href="#" class="nav-btn">Ficción</a>
+      <a href="#" class="nav-btn">No Ficción</a>
+      <a href="#" class="nav-btn">Reseñas</a>
+      <a href="/frecuencias/" class="nav-btn">Frecuencias</a>
+    </nav>
   </header>
 
   {{ content }}
