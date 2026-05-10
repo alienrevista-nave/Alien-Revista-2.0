@@ -1,3 +1,14 @@
+<script>
+  document.querySelectorAll('.main-category').forEach(button => {
+    button.addEventListener('click', function(e) {
+      if (window.innerWidth > 992) return;
+      e.preventDefault();
+      const parent = this.parentElement;
+      parent.classList.toggle('active');
+    });
+  });
+</script>
+
 body {
   background: black !important;
   color: #00ff00;
