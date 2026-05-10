@@ -41,10 +41,14 @@ body {
   display: flex;
   align-items: center;
   gap: 15px;
-  flex: 1;
 }
 
-.logo-link { display: flex; align-items: center; text-decoration: none; }
+.logo-link { 
+  display: flex; 
+  align-items: center; 
+  text-decoration: none; 
+}
+
 .alien-icon { height: 55px; margin-right: 10px; }
 .alien-text { height: 55px; }
 
@@ -71,7 +75,7 @@ body {
   transform: rotate(20deg) scale(1.1);
 }
 
-/* Navegación Desktop */
+/* Botones */
 .nav {
   display: flex;
   gap: 12px;
@@ -99,12 +103,12 @@ body {
     justify-content: space-between;
   }
   
-  .logo-group {
-    flex: 1;
-  }
-  
   .tagline {
     font-size: 1.05em;
+    width: 100%;
+    order: 3;
+    margin-top: 8px;
+    text-align: center;
   }
   
   .nav {
@@ -134,9 +138,10 @@ body {
   }
 }
 
-/* OCULTAR CHECKBOX PARA SIEMPRE */
+/* ELIMINAR CUADRADITO BLANCO DEFINITIVAMENTE */
 .menu-toggle {
   display: none !important;
-  visibility: hidden;
   position: absolute;
+  opacity: 0;
+  visibility: hidden;
 }
