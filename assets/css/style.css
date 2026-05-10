@@ -7,7 +7,7 @@ body {
   line-height: 1.6;
 }
 
-/* HEADER */
+/* ==================== HEADER MEJORADO ==================== */
 .header {
   position: sticky;
   top: 0;
@@ -15,102 +15,98 @@ body {
   border-bottom: 4px solid #00ff00;
   padding: 15px 20px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
   z-index: 100;
 }
 
 .logo-link {
   display: flex;
   align-items: center;
+  text-decoration: none;
 }
 
 .alien-icon { height: 58px; margin-right: 12px; }
 .alien-text { height: 58px; }
 
-/* Menú con hover */
-.nav {
-  display: flex;
-  gap: 35px;
-  align-items: center;
-}
-
-.dropdown {
-  position: relative;
-}
-
-.dropbtn {
+.tagline {
   color: #ff00ff;
-  text-decoration: none;
   font-size: 1.1em;
-  padding: 8px 0;
+  letter-spacing: 2px;
+  margin-left: 10px;
+  white-space: nowrap;
 }
 
-.dropdown {
-  position: relative;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background: black;
-  border: 2px solid #00ff00;
-  min-width: 220px;
-  top: 100%;
-  left: 0;
-  padding: 12px 0;
-  box-shadow: 0 0 15px rgba(0,255,0,0.4);
-  z-index: 200;
-}
-
-/* Corrección para los dropdowns de la derecha */
-.dropdown:last-child .dropdown-content {
-  left: auto;
-  right: 0;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-.dropdown-content a {
-  display: block;
+/* Botones verdes estilo mockup */
+.nav-btn {
+  background: #00ff00;
+  color: black;
   padding: 10px 20px;
-  color: #00ff00;
+  border-radius: 6px;
   text-decoration: none;
+  font-weight: bold;
+  font-size: 1.05em;
+  transition: all 0.3s;
 }
 
-.dropdown-content a:hover {
-  background: rgba(0,255,0,0.1);
-  color: #00ff88;
+.nav-btn:hover {
+  background: #ff00ff;
+  color: white;
+  transform: translateY(-2px);
 }
 
-/* Móvil */
+/* Ocultar checkbox */
+.menu-toggle {
+  display: none;
+}
+
+.hamburger {
+  font-size: 2.4em;
+  color: #ff00ff;
+  cursor: pointer;
+  display: none;
+  margin-left: auto;
+}
+
+/* ==================== RESPONSIVE ==================== */
 @media (max-width: 900px) {
+  .header {
+    justify-content: space-between;
+  }
+  
+  .tagline {
+    display: none; /* se oculta en móvil para no saturar */
+  }
+  
   .nav {
     display: none;
     flex-direction: column;
     position: absolute;
-    top: 80px;
+    top: 100%;
     left: 0;
     width: 100%;
     background: black;
     padding: 20px;
     border-top: 4px solid #00ff00;
+    gap: 10px;
   }
-
+  
+  .nav-btn {
+    text-align: center;
+    padding: 14px;
+  }
+  
   .hamburger {
-    font-size: 2.2em;
-    color: #ff00ff;
-    cursor: pointer;
     display: block;
   }
-
+  
   .menu-toggle:checked ~ .nav {
     display: flex;
   }
+}
+
+/* Quitar el cuadradito blanco */
+input[type="checkbox"] {
+  display: none;
 }
