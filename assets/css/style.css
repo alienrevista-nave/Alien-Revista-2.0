@@ -41,7 +41,7 @@ body {
   text-align: center;
 }
 
-/* Ovni */
+/* Ovni con glow suave */
 .hamburger {
   display: none;
   cursor: pointer;
@@ -50,14 +50,13 @@ body {
 
 .ufo-icon {
   height: 52px;
-  filter: drop-shadow(0 0 6px #00ff00) 
-          drop-shadow(0 0 12px #ff00ff) 
-          drop-shadow(0 0 20px #00ffff);
+  filter: drop-shadow(0 0 4px #00ff00) 
+          drop-shadow(0 0 8px #ff00ff);
   transition: all 0.4s ease;
 }
 
 .hamburger:hover .ufo-icon {
-  transform: rotate(25deg) scale(1.08);
+  transform: rotate(20deg) scale(1.1);
 }
 
 /* Botones desktop */
@@ -126,4 +125,9 @@ body {
     padding: 15px;
     font-size: 1.12em;
   }
+}
+
+/* Eliminar checkbox visible de una vez */
+.menu-toggle {
+  display: none !important;
 }
