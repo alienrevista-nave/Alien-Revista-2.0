@@ -8,18 +8,22 @@
 </head>
 <body>
   <header class="header">
-    <!-- Logo -->
-    <a href="/" class="logo-link">
-      <img src="{{ '/assets/alien-icon.png' | relative_url }}" alt="Alien" class="alien-icon">
-      <img src="{{ '/assets/alien-text.png' | relative_url }}" alt="ALIEN" class="alien-text">
-    </a>
+    <div class="header-inner">
+      <!-- Logo + Texto -->
+      <a href="/" class="logo-link">
+        <img src="{{ '/assets/alien-icon.png' | relative_url }}" alt="Alien" class="alien-icon">
+        <img src="{{ '/assets/alien-text.png' | relative_url }}" alt="ALIEN" class="alien-text">
+      </a>
 
-    <!-- Tagline en header -->
-    <div class="tagline">EN CONTACTO CON LA ATMÓSFERA</div>
+      <!-- Tagline -->
+      <div class="tagline">EN CONTACTO CON LA ATMÓSFERA</div>
+    </div>
 
-    <!-- Menú hamburguesa (ovni en móvil) -->
+    <!-- Ovni Hamburguesa -->
     <input type="checkbox" id="menu-toggle" class="menu-toggle">
-    <label for="menu-toggle" class="hamburger">🛸</label>
+    <label for="menu-toggle" class="hamburger">
+      <img src="{{ '/assets/ufo.png' | relative_url }}" alt="Menú" class="ufo-icon">
+    </label>
 
     <!-- Navegación -->
     <nav class="nav">
