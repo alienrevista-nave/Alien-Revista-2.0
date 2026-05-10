@@ -1,4 +1,4 @@
-/* ==================== RESET GLOBAL ==================== */
+/* ==================== RESET & GLOBAL ==================== */
 * {
   margin: 0;
   padding: 0;
@@ -6,23 +6,19 @@
 }
 
 body {
-  background: #000000 !important;
+  background: #000000;
   color: #00ff00;
   font-family: 'Courier New', Courier, monospace;
+  line-height: 1.6;
   min-height: 100vh;
   overflow-x: hidden;
-}
-
-/* Forzar negro en todo el contenido */
-main, .main-grid, article, section, div, .post-card, .sidebar {
-  background: #000000 !important;
 }
 
 /* ==================== HEADER ==================== */
 .header {
   position: sticky;
   top: 0;
-  background: #000000 !important;
+  background: #000000;
   border-bottom: 4px solid #00ff00;
   padding: 15px 20px;
   z-index: 100;
@@ -38,43 +34,44 @@ main, .main-grid, article, section, div, .post-card, .sidebar {
 
 .logo-group {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 15px;
 }
 
-.logo-link { 
-  display: flex; 
-  align-items: center; 
-  text-decoration: none; 
+.logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
 }
 
-.alien-icon { height: 55px; margin-right: 10px; }
-.alien-text { height: 55px; }
+.alien-icon { height: 58px; margin-right: 10px; }
+.alien-text { height: 58px; }
 
 .tagline {
   color: #ff00ff;
-  font-size: 1.2em;
+  font-size: 1.15em;
   letter-spacing: 3px;
-  text-transform: uppercase;
+  margin-top: 6px;
+  text-transform: none;
 }
 
-/* Ovni */
+/* Ovni menú */
 .hamburger {
   display: none;
   cursor: pointer;
 }
 
 .ufo-icon {
-  height: 50px;
+  height: 52px;
   filter: drop-shadow(0 0 4px #00ff00) drop-shadow(0 0 8px #ff00ff);
-  transition: all 0.4s;
+  transition: all 0.4s ease;
 }
 
 .hamburger:hover .ufo-icon {
   transform: rotate(20deg) scale(1.1);
 }
 
-/* Botones */
+/* Botones navegación */
 .nav {
   display: flex;
   gap: 12px;
@@ -93,7 +90,7 @@ main, .main-grid, article, section, div, .post-card, .sidebar {
 
 .nav-btn:hover {
   background: #ff00ff;
-  color: white;
+  color: #fff;
 }
 
 /* ==================== MOBILE ==================== */
@@ -101,15 +98,11 @@ main, .main-grid, article, section, div, .post-card, .sidebar {
   .header-content {
     justify-content: space-between;
   }
- 
+
   .tagline {
     font-size: 1.05em;
-    width: 100%;
-    order: 3;
-    margin-top: 8px;
-    text-align: center;
   }
- 
+
   .nav {
     display: none;
     flex-direction: column;
@@ -117,48 +110,47 @@ main, .main-grid, article, section, div, .post-card, .sidebar {
     top: 100%;
     left: 0;
     width: 100%;
-    background: #000000 !important;
+    background: #000;
     padding: 20px;
     border-top: 4px solid #00ff00;
     gap: 10px;
   }
- 
+
   .hamburger {
     display: block;
   }
- 
+
   .menu-toggle:checked ~ .nav {
     display: flex;
   }
- 
+
   .nav-btn {
     text-align: center;
-    padding
+    padding: 15px;
   }
+}
 
-  /* ==================== HOME ==================== */
+/* ==================== HOME ==================== */
 .main-grid {
   display: grid;
   grid-template-columns: 1fr 360px;
   gap: 50px;
   max-width: 1480px;
-  margin: 40px auto;
+  margin: 50px auto;
   padding: 0 30px;
 }
 
-@media (max-width: 992px) {
-  .main-grid {
-    grid-template-columns: 1fr;
-    padding: 0 20px;
-  }
+.post-card {
+  background: #000;
 }
 
 .sidebar {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 35px;
 }
 
+/* Cards sidebar */
 .error-card, .spotify-card {
   border: 2px solid #00ff00;
   padding: 25px;
@@ -167,21 +159,28 @@ main, .main-grid, article, section, div, .post-card, .sidebar {
 }
 
 .error-card h3 {
+  color: #00ff00;
+  font-size: 1.5em;
+  margin-bottom: 8px;
+}
+
+.error-card h4 {
   color: #ff00ff;
   font-size: 2em;
-  margin: 0 0 8px 0;
-  text-shadow: 0 0 15px #ff00ff;
+  margin: 0 0 15px 0;
 }
 
-.spotify-card {
-  padding: 20px;
+.spotify-card h3 {
+  color: #ff00ff;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
-/* Botón leer completo */
+/* Botón leer */
 .leer-btn {
   color: #ff00ff;
-  font-size: 1.2em;
-  padding: 12px 35px;
+  font-size: 1.25em;
+  padding: 14px 40px;
   border: 2px solid #ff00ff;
   border-radius: 6px;
   text-decoration: none;
@@ -195,20 +194,12 @@ main, .main-grid, article, section, div, .post-card, .sidebar {
   transform: scale(1.05);
 }
 
-/* Fondo blanco residual */
-body, .main-grid, .post-card, .sidebar, header, footer {
-  background: #000000 !important;
-}
-    
-/* ====================== MATAR EL CUADRADITO BLANCO ====================== */
-#menu-toggle, 
-input.menu-toggle,
-input[type="checkbox"]#menu-toggle {
+/* Eliminar checkbox blanco */
+#menu-toggle, input[type="checkbox"] {
   display: none !important;
   visibility: hidden !important;
   opacity: 0 !important;
-  position: absolute !important;
-  width: 0 !important;
-  height: 0 !important;
-  z-index: -9999 !important;
+  width: 0;
+  height: 0;
+  position: absolute;
 }
