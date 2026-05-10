@@ -8,13 +8,14 @@
 </head>
 <body>
   <header class="header">
-    <a href="/" class="logo-link">
-      <img src="{{ '/assets/alien-icon.png' | relative_url }}" alt="Alien" class="alien-icon">
-      <img src="{{ '/assets/alien-text.png' | relative_url }}" alt="ALIEN" class="alien-text">
-    </a>
-
-    <!-- Tagline -->
-    <div class="tagline">en contacto con la atmósfera</div>
+    <!-- Logo + Tagline -->
+    <div class="logo-container">
+      <a href="/" class="logo-link">
+        <img src="{{ '/assets/alien-icon.png' | relative_url }}" alt="Alien" class="alien-icon">
+        <img src="{{ '/assets/alien-text.png' | relative_url }}" alt="ALIEN" class="alien-text">
+      </a>
+      <div class="tagline">en contacto con la atmósfera</div>
+    </div>
 
     <!-- Menú hamburguesa -->
     <input type="checkbox" id="menu-toggle" class="menu-toggle">
