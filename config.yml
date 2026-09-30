@@ -1,9 +1,0 @@
-title: ALIEN REVISTA
-description: en contacto con la atmósfera
-theme: jekyll-theme-minimal
-baseurl: "/Alien-Revista-2.0"
-url: "https://alienrevista-nave.github.io"
-
-sass:
-  sass_dir: assets/css
-  style: compressed

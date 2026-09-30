@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ALIEN // Revista</title>
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#05060a;--panel:#0a0d14;--txt:#b9ffd9;--dim:#5f8a77;--verde:#2bff9a;--rosa:#ff2bd6;--amarillo:#ffc93c;--rojo:#ff3b55}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:var(--bg);color:var(--txt);font-family:'Share Tech Mono','Courier New',monospace;overflow:hidden}
+button{font:inherit;color:inherit;background:none;border:1px solid var(--verde);padding:.6rem 1.2rem;cursor:pointer}
+button:hover,button:focus-visible{background:var(--verde);color:#000;outline:none}
+/* ARRANQUE */
+#boot{position:fixed;inset:0;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;background:var(--bg);transition:opacity .8s,transform .8s}
+#boot.off{opacity:0;transform:scale(1.4);pointer-events:none}
+#boot h1{font-family:'VT323',monospace;font-size:clamp(3rem,12vw,8rem);margin:0;color:var(--verde);letter-spacing:.15em;text-shadow:3px 0 var(--rosa),-3px 0 #2bd6ff;animation:glitch 3s infinite}
+#log{min-height:7.5em;width:min(90vw,480px);color:var(--dim);font-size:.95rem;line-height:1.5}
+#entrar{opacity:0;pointer-events:none;font-size:1.2rem;border-color:var(--rosa);color:var(--rosa)}
+#entrar.on{opacity:1;pointer-events:auto;animation:pulso 1.4s infinite}
+#entrar:hover{background:var(--rosa);color:#000}
+@keyframes glitch{0%,92%,100%{transform:none}94%{transform:translateX(6px) skewX(8deg)}96%{transform:translateX(-6px)}}
+@keyframes pulso{50%{box-shadow:0 0 18px var(--rosa)}}
+/* INTERFAZ */
+#hud{position:fixed;inset:0;display:grid;grid-template-columns:230px 1fr 200px;grid-template-rows:44px 1fr 44px;opacity:0;transition:opacity 1s;padding:8px;gap:8px}
+#hud.on{opacity:1}
+.box{border:1px solid #1d3a2e;background:rgba(10,13,20,.85);padding:.7rem;min-height:0;overflow:auto}
+.box h2{font-family:'VT323',monospace;font-size:1.4rem;font-weight:400;margin:0 0 .5rem;color:var(--verde)}
+#top{grid-column:1/4;display:flex;align-items:center;justify-content:space-between;gap:1rem;font-size:.85rem;color:var(--dim)}
+#top b{color:var(--verde);font-weight:400}
+#rec{color:var(--rojo);animation:blink 1.2s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+#bot{grid-column:1/4;display:flex;align-items:center;justify-content:space-between;font-size:.85rem;color:var(--dim)}
+.item{display:flex;gap:.6rem;width:100%;text-align:left;border:0;border-bottom:1px solid #12251d;padding:.55rem .2rem;font-size:.9rem}
+.item i{font-style:normal;color:var(--c)}
+.item:hover,.item.act{background:color-mix(in srgb,var(--c) 18%,transparent);color:var(--txt)}
+#redes a{display:block;color:var(--txt);text-decoration:none;padding:.4rem 0;border-bottom:1px solid #12251d;font-size:.9rem}
+#redes a:hover{color:var(--rosa)}
+/* ESCENA */
+#stage{position:relative;padding:0;overflow:hidden}
+#cv{width:100%;height:100%;display:block;cursor:grab}
+#tip{position:absolute;pointer-events:none;padding:.3rem .6rem;border:1px solid var(--c,var(--verde));background:#000c;font-size:.8rem;display:none;white-space:nowrap}
+#hint{position:absolute;left:10px;bottom:8px;font-size:.75rem;color:var(--dim)}
+#msg{position:absolute;inset:0;display:none;place-items:center;text-align:center;color:var(--dim);font-size:.85rem}
+/* LECTOR */
+#reader{position:absolute;inset:0;background:#05060af2;display:none;grid-template-columns:230px 1fr;border-top:3px solid var(--c)}
+#reader.on{display:grid}
+#rlist{border-right:1px solid #1d3a2e;overflow:auto;padding:1rem}
+#rlist h3{font-family:'VT323',monospace;font-size:1.8rem;font-weight:400;margin:0 0 .3rem;color:var(--c)}
+#rlist p{margin:0 0 1rem;font-size:.8rem;color:var(--dim)}
+#rlist .item{font-size:.85rem}
+#rbody{overflow:auto;padding:1.5rem clamp(1rem,4vw,3rem)}
+#rbody h4{font-family:'VT323',monospace;font-size:2.4rem;font-weight:400;margin:0 0 1rem;color:var(--c)}
+#rbody div{max-width:62ch;line-height:1.7;white-space:pre-wrap}
+#cerrar{position:absolute;top:8px;right:8px;border-color:var(--rojo);color:var(--rojo);padding:.3rem .8rem}
+#cerrar:hover{background:var(--rojo);color:#000}
+/* CRT */
+#crt{position:fixed;inset:0;pointer-events:none;z-index:20;background:repeating-linear-gradient(0deg,#0000 0 2px,#0000001f 2px 3px)}
+@media (max-width:800px){
+ #hud{grid-template-columns:1fr;grid-template-rows:40px 1fr 150px 36px}
+ #side,#top span.x{display:none}
+ #menu{grid-column:1;grid-row:3;display:flex;flex-wrap:wrap;gap:.3rem}
+ #menu h2{display:none}.item{width:auto;border:1px solid #1d3a2e}
+ #top,#bot{grid-column:1}#bot{grid-row:4}
+ #reader{grid-template-columns:1fr;grid-template-rows:auto 1fr}
+ #rlist{border-right:0;border-bottom:1px solid #1d3a2e;max-height:38%}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="boot">
+  <h1>ALIEN</h1>
+  <div id="log" aria-live="polite"></div>
+  <button id="entrar">ENTRAR A LA NAVE</button>
+</div>
+
+<div id="hud">
+  <div id="top" class="box"><b>ALIEN NAVE // INTERFAZ DE EXPLORACIÓN</b><span class="x">SEÑAL: INESTABLE</span><span id="rec">● REC</span></div>
+  <nav id="menu" class="box"><h2>OBJETOS DE ESTUDIO</h2></nav>
+  <main id="stage" class="box">
+    <canvas id="cv"></canvas>
+    <div id="tip"></div>
+    <div id="hint">arrastrá para girar · clic en un objeto para entrar</div>
+    <div id="msg"></div>
+    <section id="reader" aria-live="polite">
+      <div id="rlist"></div>
+      <div id="rbody"></div>
+      <button id="cerrar">CERRAR</button>
+    </section>
+  </main>
+  <aside id="side" class="box"><h2>SISTEMAS</h2><div id="redes"></div></aside>
+  <div id="bot" class="box"><span>NAVE: A.L.I.E.N. 01 · TRIPULACIÓN: 1</span><span class="x">MISIÓN: OBSERVAR. COMPRENDER. REGISTRAR.</span></div>
+</div>
+<div id="crt"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+<script>
+/* ============ CONTENIDO EDITABLE ============
+   Agregar una sección = agregar un bloque a SECCIONES.
+   match: palabras que buscamos en los nombres de los objetos del .glb (minúsculas).
+   forma: objeto de reemplazo mientras no exista ciudad.glb. */
+const SECCIONES=[
+ {id:'error404',nombre:'ERROR 404',sub:'Editorial',color:'#ff2bd6',match:['error','glitch','404'],forma:{x:0,z:0,w:1.6,h:.15,d:1.6},
+  notas:[{titulo:'Editorial',texto:'[Pegá acá el texto de la nota]'}]},
+ {id:'psicosis',nombre:'PSICOSIS COLECTIVA',sub:'Sistema de vigilancia',color:'#ff3b55',match:['cctv','camara','cámara','psicosis'],forma:{x:2.6,z:-2.4,w:.5,h:2.6,d:.5},
+  notas:[{titulo:'Ensayo 1',texto:'[Pegá acá el texto de la nota]'}]},
+ {id:'sinismos',nombre:'SIN-ISMOS',sub:'Museo de ideologías',color:'#ffc93c',match:['templo','sinismo','sacro'],forma:{x:3.4,z:1.6,w:2,h:1.8,d:1.6},
+  notas:[{titulo:'Futurismo',texto:'[Pegá acá el texto de la nota]'}]},
+ {id:'archivo',nombre:'ARCHIVO CORRUPTO',sub:'Terminal abandonada',color:'#b07bff',match:['tacho','basura','archivo'],forma:{x:-.6,z:2.8,w:.6,h:.9,d:.6},
+  notas:[{titulo:'Fragmento 01',texto:'[Pegá acá el texto de la nota]'}]},
+ {id:'gameover',nombre:'GAME OVER',sub:'Arcade',color:'#2bff9a',match:['game over','arcade','corazones'],forma:{x:2.2,z:3.2,w:.9,h:1.4,d:.7},
+  notas:[{titulo:'Crítica 1',texto:'[Pegá acá el texto de la nota]'}]},
+ {id:'fotogramas',nombre:'FOTOGRAMAS',sub:'Cine abandonado',color:'#ff7a2b',match:['fotograma','cine','object_258'],forma:{x:-3.2,z:1.2,w:2.2,h:2.2,d:1.8},
+  notas:[{titulo:'Análisis 1',texto:'[Pegá acá el texto de la nota]'}]},
+ {id:'frecuencias',nombre:'FUERA DE FRECUENCIA',sub:'Torre de transmisión',color:'#2bd6ff',match:['frecuencia','torre','radio'],forma:{x:-2.6,z:-2.6,w:1.6,h:3.6,d:1.6},
+  notas:[{titulo:'Reseña 1',texto:'[Pegá acá el texto de la nota]'}]},
+ {id:'bitacoras',nombre:'BITÁCORAS ESPACIALES',sub:'Registros de la misión',color:'#8dff2b',match:['nave','bitacora','bitácora','ovni'],forma:{x:0,z:-3.4,w:.9,h:.9,d:.9,esfera:true},
+  notas:[{titulo:'Bitácora 1',texto:'[Pegá acá el texto de la nota]'}]}
+];
+const REDES=[{t:'Instagram',url:'#'},{t:'Contacto',url:'#'}]; // editar/agregar links
+
+/* ============ ARRANQUE ============ */
+const lines=['> iniciando A.L.I.E.N. 01...','> escáner general: activo','> señal: inestable','> anomalías detectadas: '+SECCIONES.length,'> la realidad puede contener errores','> sistema listo.'];
+const log=document.getElementById('log'),entrar=document.getElementById('entrar');
+let li=0;(function t(){if(li<lines.length){log.textContent+=lines[li++]+'\n';setTimeout(t,420)}else entrar.classList.add('on')})();
+entrar.onclick=()=>{document.getElementById('boot').classList.add('off');document.getElementById('hud').classList.add('on');setTimeout(resize,50)};
+
+/* ============ MENÚ + LECTOR ============ */
+const menu=document.getElementById('menu'),reader=document.getElementById('reader'),rlist=document.getElementById('rlist'),rbody=document.getElementById('rbody');
+SECCIONES.forEach((s,i)=>{const b=document.createElement('button');b.className='item';b.style.setProperty('--c',s.color);b.dataset.id=s.id;
+ b.innerHTML=`<i>${String(i+1).padStart(2,'0')}</i><span>${s.nombre}</span>`;b.onclick=()=>abrir(s.id);menu.appendChild(b)});
+document.getElementById('redes').innerHTML=REDES.map(r=>`<a href="${r.url}" target="_blank" rel="noopener">${r.t}</a>`).join('');
+function abrir(id){const s=SECCIONES.find(x=>x.id==id);reader.style.setProperty('--c',s.color);
+ rlist.innerHTML=`<h3>${s.nombre}</h3><p>${s.sub}</p>`;
+ s.notas.forEach((n,i)=>{const b=document.createElement('button');b.className='item';b.style.setProperty('--c',s.color);b.textContent=n.titulo;b.onclick=()=>nota(s,i);rlist.appendChild(b)});
+ nota(s,0);reader.classList.add('on');
+ document.querySelectorAll('#menu .item').forEach(e=>e.classList.toggle('act',e.dataset.id==id))}
+function nota(s,i){const n=s.notas[i];rbody.innerHTML='';const h=document.createElement('h4'),d=document.createElement('div');h.textContent=n.titulo;d.textContent=n.texto;rbody.append(h,d);rbody.scrollTop=0}
+function cerrar(){reader.classList.remove('on');document.querySelectorAll('#menu .item').forEach(e=>e.classList.remove('act'))}
+document.getElementById('cerrar').onclick=cerrar;
+addEventListener('keydown',e=>{if(e.key==='Escape')cerrar()});
+
+/* ============ CIUDAD 3D ============ */
+const cv=document.getElementById('cv'),stage=document.getElementById('stage'),tip=document.getElementById('tip'),msg=document.getElementById('msg');
+const renderer=new THREE.WebGLRenderer({canvas:cv,antialias:true});
+const scene=new THREE.Scene();scene.background=new THREE.Color(0x05060a);scene.fog=new THREE.Fog(0x05060a,14,30);
+const cam=new THREE.OrthographicCamera(-1,1,1,-1,.1,100);
+scene.add(new THREE.AmbientLight(0x6a5aff,.9));
+const dl=new THREE.DirectionalLight(0xff9ae8,1.1);dl.position.set(6,10,4);scene.add(dl);
+const ground=new THREE.Mesh(new THREE.BoxGeometry(11,.2,11),new THREE.MeshStandardMaterial({color:0x14161f}));ground.position.y=-.1;scene.add(ground);
+const grid=new THREE.GridHelper(11,22,0x2bff9a,0x143326);grid.position.y=.01;scene.add(grid);
+
+const clickables=[]; // {obj, sec}
+function registrar(obj,s){obj.userData.sec=s.id;clickables.push(obj)}
+SECCIONES.forEach(s=>{ // formas de reemplazo
+ const f=s.forma,g=f.esfera?new THREE.SphereGeometry(f.w/2,16,12):new THREE.BoxGeometry(f.w,f.h,f.d);
+ const m=new THREE.Mesh(g,new THREE.MeshStandardMaterial({color:s.color,emissive:s.color,emissiveIntensity:.15}));
+ m.position.set(f.x,f.h/2+(f.esfera?1:0),f.z);m.userData.placeholder=true;scene.add(m);registrar(m,s)});
+
+// Si existe ciudad.glb, reemplaza las formas buscando nodos por nombre
+new THREE.GLTFLoader().load('ciudad.glb',gltf=>{
+ clickables.filter(o=>o.userData.placeholder).forEach(o=>scene.remove(o));clickables.length=0;
+ const box=new THREE.Box3().setFromObject(gltf.scene),size=box.getSize(new THREE.Vector3()),c=box.getCenter(new THREE.Vector3());
+ const k=10/Math.max(size.x,size.z);gltf.scene.scale.setScalar(k);gltf.scene.position.set(-c.x*k,-box.min.y*k,-c.z*k);
+ scene.add(gltf.scene);scene.remove(ground,grid);
+ const hecho=new Set();
+ gltf.scene.traverse(n=>{const nm=(n.name||'').toLowerCase();if(!nm)return;
+  const s=SECCIONES.find(s=>!hecho.has(s.id)&&s.match.some(w=>nm.includes(w)));
+  if(s&&!n.userData.sec){let p=n,ya=false;while(p){if(p.userData.sec)ya=true;p=p.parent}
+   if(!ya){registrar(n,s);n.traverse(m=>{if(m.isMesh){m.material=m.material.clone();}})}}});
+ const faltan=SECCIONES.filter(s=>!clickables.some(o=>o.userData.sec==s.id));
+ if(faltan.length){console.warn('Sin objeto en el .glb para:',faltan.map(s=>s.id));}
+},undefined,()=>{}); // sin .glb: quedan las formas de reemplazo
+
+let ang=Math.PI/4,drag=null,moved=0,hover=null;
+function place(){const r=16;cam.position.set(Math.cos(ang)*r,11,Math.sin(ang)*r);cam.lookAt(0,1,0)}
+function resize(){const w=stage.clientWidth,h=stage.clientHeight;if(!w||!h)return;renderer.setSize(w,h,false);renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+ const a=w/h,s=7;cam.left=-s*a;cam.right=s*a;cam.top=s;cam.bottom=-s;cam.updateProjectionMatrix()}
+addEventListener('resize',resize);
+
+const ray=new THREE.Raycaster(),mouse=new THREE.Vector2();
+function pick(e){const r=cv.getBoundingClientRect();mouse.set((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1);
+ ray.setFromCamera(mouse,cam);const hits=ray.intersectObjects(clickables.length?scene.children:[],true);
+ for(const h of hits){let p=h.object;while(p){if(p.userData.sec)return p;p=p.parent}}return null}
+function brillo(o,v){if(!o)return;o.traverse(m=>{if(m.isMesh&&m.material.emissive){m.material.emissive.set(v?SECCIONES.find(s=>s.id==o.userData.sec).color:(o.userData.placeholder?SECCIONES.find(s=>s.id==o.userData.sec).color:0x000000));m.material.emissiveIntensity=v?.9:(o.userData.placeholder?.15:1)}})}
+cv.addEventListener('pointerdown',e=>{drag=e.clientX;moved=0;cv.setPointerCapture(e.pointerId)});
+cv.addEventListener('pointermove',e=>{
+ if(drag!==null){const dx=e.clientX-drag;ang-=dx*.008;moved+=Math.abs(dx);drag=e.clientX;return}
+ const o=pick(e);if(o!==hover){brillo(hover,false);hover=o;brillo(o,true)}
+ cv.style.cursor=o?'pointer':'grab';
+ if(o){const s=SECCIONES.find(s=>s.id==o.userData.sec);tip.style.display='block';tip.style.setProperty('--c',s.color);tip.textContent=s.nombre+' · '+s.sub;
+  const r=stage.getBoundingClientRect();tip.style.left=Math.min(e.clientX-r.left+14,r.width-tip.offsetWidth-6)+'px';tip.style.top=(e.clientY-r.top+14)+'px'}else tip.style.display='none'});
+cv.addEventListener('pointerup',e=>{drag=null;if(moved<5){const o=pick(e);if(o)abrir(o.userData.sec)}});
+cv.addEventListener('pointerleave',()=>{tip.style.display='none'});
+
+const quiet=matchMedia('(prefers-reduced-motion:reduce)').matches;
+(function loop(){requestAnimationFrame(loop);if(drag===null&&!reader.classList.contains('on')&&!quiet)ang+=.0008;place();renderer.render(scene,cam)})();
+resize();
+</script>
+</body>
+</html>
