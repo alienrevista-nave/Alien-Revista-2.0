@@ -44,7 +44,8 @@ h2{font-family:'VT323',monospace;font-size:1.35rem;font-weight:400;margin:0 0 .5
 .item small{display:block;color:var(--dim);font-size:.7rem}
 #redes a{display:block;color:var(--txt);text-decoration:none;padding:.4rem 0;border-bottom:1px solid #0f2b20;font-size:.85rem}
 #redes a:hover{color:var(--m)}
-#freq{display:flex;flex-direction:column}#freq iframe{flex:none;height:352px;width:100%;border:0}.sp{display:block;margin-top:.6rem;font-size:.75rem;color:var(--dim);text-decoration:none}.sp:hover{color:var(--m)}
+#freq{display:flex;flex-direction:column}#freq iframe{flex:none;height:352px;width:100%;border:0}#spbtn{width:100%;border-color:var(--m);color:var(--m)}#spbtn:hover{background:var(--m);color:#000}
+.sp{display:block;margin-top:.6rem;font-size:.75rem;color:var(--dim);text-decoration:none}.sp:hover{color:var(--m)}
 /* ESCENA */
 #stage{position:relative;padding:0;overflow:hidden}
 #cv{width:100%;height:100%;display:block}
@@ -113,7 +114,7 @@ body.calma *{animation:none!important;transition:none!important}
   </main>
   <aside id="der">
     <div class="box"><h2>SISTEMAS</h2><div id="redes"></div></div>
-    <div id="freq" class="box sc"><h2>FRECUENCIAS</h2><iframe src="https://open.spotify.com/embed/playlist/57qxI5VqHjOi9sVwA03cWM?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" title="Playlist Frecuencias"></iframe><a class="sp" href="https://open.spotify.com/playlist/57qxI5VqHjOi9sVwA03cWM" target="_blank" rel="noopener">Abrir en Spotify ↗</a></div>
+    <div id="freq" class="box sc"><h2>FRECUENCIAS</h2><button id="spbtn">▶ CARGAR PLAYLIST</button><a class="sp" href="https://open.spotify.com/playlist/57qxI5VqHjOi9sVwA03cWM" target="_blank" rel="noopener">Abrir en Spotify ↗</a></div>
   </aside>
   <footer id="bot">
     <button id="radar" class="box" aria-label="Crónicas terrestres"><svg viewBox="0 0 100 100"><g fill="none" stroke="#1a7a52"><circle cx="50" cy="50" r="46"/><circle cx="50" cy="50" r="30"/><circle cx="50" cy="50" r="14"/><line x1="50" y1="4" x2="50" y2="96"/><line x1="4" y1="50" x2="96" y2="50"/></g><line id="tr" x1="50" y1="50" x2="50" y2="6" stroke="#2bff9a" stroke-opacity=".25" stroke-width="7"/><line id="sw" x1="50" y1="50" x2="50" y2="4" stroke="#2bff9a" stroke-width="2"/><g id="blips"></g></svg><span>CRÓNICAS TERRESTRES<small>clic para entrar</small></span></button>
@@ -156,6 +157,7 @@ SECCIONES.filter(s=>!s.oculta).forEach((s,i)=>{const b=document.createElement('b
 $('redes').innerHTML=REDES.map(r=>r.mov?`<a href="#" data-mov>${r.t}</a>`:r.sec?`<a href="#" data-sec="${r.sec}">${r.t}</a>`:`<a href="${r.url}"${r.url.startsWith('http')?' target="_blank" rel="noopener"':''}>${r.t}</a>`).join('');
 $('redes').addEventListener('click',e=>{const m=e.target.closest('a[data-mov]');if(m){e.preventDefault();calma=!calma;document.body.classList.toggle('calma',calma);m.textContent='Movimiento: '+(calma?'reducido':'activado');if(calma&&volando)fin();return}const a=e.target.closest('a[data-sec]');if(a){e.preventDefault();abrir(a.dataset.sec)}});
 $('radar').onclick=()=>abrir('cronicas');
+$('spbtn').onclick=()=>{const f=document.createElement('iframe');f.src='https://open.spotify.com/embed/playlist/57qxI5VqHjOi9sVwA03cWM?utm_source=generator&theme=0';f.allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';f.title='Playlist Frecuencias';$('spbtn').replaceWith(f)};
 function marcar(id){document.querySelectorAll('#menu .item').forEach(e=>e.classList.toggle('act',e.dataset.id==id));$('radar').classList.toggle('act',id==='cronicas')}
 function abrir(id){const s=SECCIONES.find(x=>x.id==id);
  $('rlist').innerHTML=`<h3>${s.nombre}</h3><p>${s.sub}</p>`;
