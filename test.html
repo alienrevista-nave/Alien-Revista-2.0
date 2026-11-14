@@ -52,8 +52,10 @@ sun.position.set(5, 10, 7);
 scene.add(sun);
 
 const clickable = [];
+let gltfRoot = null;
 new GLTFLoader().load(MODEL, (gltf) => {
   scene.add(gltf.scene);
+  gltfRoot = gltf.scene;
   gltf.scene.traverse((o) => { if (o.isMesh) clickable.push(o); });
 
   // Encuadrar el modelo automáticamente
@@ -81,7 +83,11 @@ addEventListener('pointerup', (e) => {
   mouse.set((e.clientX / innerWidth) * 2 - 1, -(e.clientY / innerHeight) * 2 + 1);
   ray.setFromCamera(mouse, camera);
   const hit = ray.intersectObjects(clickable, false)[0];
-  info.textContent = hit ? 'Objeto: ' + hit.object.name : 'Nada ahí';
+  if (!hit) { info.textContent = 'Nada ahí'; return; }
+  // Subir hasta el objeto de primer nivel (el que nombraste en Blender)
+  let o = hit.object;
+  while (o.parent && o.parent !== gltfRoot) o = o.parent;
+  info.textContent = 'Sección: ' + o.name + '   (parte: ' + hit.object.name + ')';
 });
 
 addEventListener('resize', () => {
