@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prueba ciudad 3D</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #1a0f2e; overflow: hidden; font-family: monospace; }
+  canvas { display: block; }
+  #info {
+    position: fixed; top: 12px; left: 12px; padding: 8px 12px;
+    background: rgba(0,0,0,.6); color: #b6ffb0; border: 1px solid #ff7bd5;
+    font-size: 14px; pointer-events: none;
+  }
+</style>
+</head>
+<body>
+<div id="info">Cargando ciudad.glb...</div>
+
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+const MODEL = 'ciudad.glb'; // cambiá si tu archivo se llama distinto
+const info = document.getElementById('info');
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x1a0f2e);
+
+const camera = new THREE.PerspectiveCamera(45, innerWidth / innerHeight, 0.1, 1000);
+camera.position.set(10, 8, 12);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.setSize(innerWidth, innerHeight);
+document.body.appendChild(renderer.domElement);
+
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+
+scene.add(new THREE.HemisphereLight(0xb9a6ff, 0x2a1450, 1.6));
+const sun = new THREE.DirectionalLight(0xffffff, 1.2);
+sun.position.set(5, 10, 7);
+scene.add(sun);
+
+const clickable = [];
+new GLTFLoader().load(MODEL, (gltf) => {
+  scene.add(gltf.scene);
+  gltf.scene.traverse((o) => { if (o.isMesh) clickable.push(o); });
+
+  // Encuadrar el modelo automáticamente
+  const box = new THREE.Box3().setFromObject(gltf.scene);
+  const center = box.getCenter(new THREE.Vector3());
+  const size = box.getSize(new THREE.Vector3()).length();
+  controls.target.copy(center);
+  camera.position.copy(center).add(new THREE.Vector3(size * 0.6, size * 0.5, size * 0.7));
+  camera.near = size / 100; camera.far = size * 10; camera.updateProjectionMatrix();
+
+  info.textContent = 'Listo. Hacé clic en un objeto.';
+  console.log('Objetos:', clickable.map(m => m.name));
+}, undefined, (err) => {
+  info.textContent = 'Error cargando ' + MODEL + ' (¿está en la misma carpeta?)';
+  console.error(err);
+});
+
+// Clic -> mostrar nombre del objeto
+const ray = new THREE.Raycaster();
+const mouse = new THREE.Vector2();
+let downX = 0, downY = 0;
+addEventListener('pointerdown', (e) => { downX = e.clientX; downY = e.clientY; });
+addEventListener('pointerup', (e) => {
+  if (Math.hypot(e.clientX - downX, e.clientY - downY) > 5) return; // fue arrastre, no clic
+  mouse.set((e.clientX / innerWidth) * 2 - 1, -(e.clientY / innerHeight) * 2 + 1);
+  ray.setFromCamera(mouse, camera);
+  const hit = ray.intersectObjects(clickable, false)[0];
+  info.textContent = hit ? 'Objeto: ' + hit.object.name : 'Nada ahí';
+});
+
+addEventListener('resize', () => {
+  camera.aspect = innerWidth / innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight);
+});
+
+renderer.setAnimationLoop(() => { controls.update(); renderer.render(scene, camera); });
+</script>
+</body>
+</html>
