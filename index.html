@@ -106,7 +106,7 @@ body.calma *{animation:none!important;transition:none!important}
     <canvas id="cv"></canvas>
     <div id="tip"></div>
     <button id="skip">SALTAR ▸</button>
-    <div id="hint">mové el mouse para explorar · clic en un objeto para entrar</div>
+    <div id="hint">mové el mouse para explorar · clic en un objeto para entrar · rueda para acercar</div>
     <section id="reader" aria-live="polite">
       <div id="rlist"></div><div id="rbody"></div>
       <button id="cerrar">CERRAR</button>
@@ -136,7 +136,7 @@ const SECCIONES=[
  {id:'psicosis',nombre:'PSICOSIS COLECTIVA',sub:'Sistema de vigilancia',match:['cctv','camara','cámara','psicosis'],forma:{x:2.6,z:-2.4,w:.5,h:2.6,d:.5},notas:[{titulo:'Ensayo 1',texto:'[Pegá acá el texto de la nota]'}]},
  {id:'sinismos',nombre:'SIN-ISMOS',sub:'Museo de ideologías',match:['templo','sinismo','sacro'],forma:{x:3.4,z:1.6,w:2,h:1.8,d:1.6},notas:[{titulo:'Futurismo',texto:'[Pegá acá el texto de la nota]'}]},
  {id:'archivo',nombre:'ARCHIVO CORRUPTO',sub:'Terminal abandonada',match:['tacho','basura','archivo'],forma:{x:-.6,z:2.8,w:.6,h:.9,d:.6},notas:[{titulo:'Fragmento 01',texto:'[Pegá acá el texto de la nota]'}]},
- {id:'gameover',nombre:'GAME OVER',sub:'Arcade',match:['game over','arcade','corazones'],forma:{x:2.2,z:3.2,w:.9,h:1.4,d:.7},notas:[{titulo:'Crítica 1',texto:'[Pegá acá el texto de la nota]'}]},
+ {id:'gameover',nombre:'GAME OVER',sub:'Arcade',match:['game over','game_over','arcade','corazones'],forma:{x:2.2,z:3.2,w:.9,h:1.4,d:.7},notas:[{titulo:'Crítica 1',texto:'[Pegá acá el texto de la nota]'}]},
  {id:'fotogramas',nombre:'FOTOGRAMAS',sub:'Cine abandonado',match:['fotograma','cine','object_258'],forma:{x:-3.2,z:1.2,w:2.2,h:2.2,d:1.8},notas:[{titulo:'Análisis 1',texto:'[Pegá acá el texto de la nota]'}]},
  {id:'frecuencias',nombre:'FRECUENCIAS',sub:'Torre de transmisión',match:['frecuencia','torre','radio'],forma:{x:-2.6,z:-2.6,w:1.6,h:3.6,d:1.6},notas:[{titulo:'Reseña 1',texto:'[Pegá acá el texto de la nota]'}]},
  {id:'cronicas',nombre:'CRÓNICAS TERRESTRES',sub:'Mini relatos desde la órbita',match:[],notas:[{titulo:'Crónica 1',texto:'[Pegá acá el texto de la nota]'}]},
@@ -182,6 +182,8 @@ const blips=[...Array(6)].map(()=>{const c=document.createElementNS(NS,'circle')
 /* ============ CIUDAD 3D: planeta + vuelo de entrada + parallax ============ */
 const V=0x2bff9a,M=0xff2bd6,cv=$('cv'),stage=$('stage'),tip=$('tip');
 const PAR={a:.3,y:3};   // intensidad del parallax (giro en radianes, altura)
+const HOVER={mezcla:.4};   // brillo rosa al pasar el mouse: 0 = nada, 1 = rosa pleno (menos = más transparente)
+const ZOOM={ini:.85,min:.45,max:1.1,paso:.0012};   // rueda del mouse: 1 = distancia original, menos = más cerca
 const FLY=7000;         // duración del vuelo de entrada (ms)
 const renderer=new THREE.WebGLRenderer({canvas:cv,antialias:true});
 const scene=new THREE.Scene();scene.background=new THREE.Color(0x05060a);
@@ -233,14 +235,19 @@ const ray=new THREE.Raycaster(),mouse=new THREE.Vector2();
 function pick(e){const r=cv.getBoundingClientRect();mouse.set((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1);
  ray.setFromCamera(mouse,cam);
  for(const h of ray.intersectObjects(clickables,true)){let p=h.object;while(p){if(p.userData.sec)return p;p=p.parent}}return null}
-function brillo(o,on){if(!o)return;o.traverse(m=>{if(!m.isMesh||!m.material.emissive)return;
- if(on){m.material.emissive.set(M);m.material.emissiveIntensity=.9}
- else if(m.userData.e0){m.material.emissive.copy(m.userData.e0[0]);m.material.emissiveIntensity=m.userData.e0[1]}
- else{m.material.emissive.set(V);m.material.emissiveIntensity=.25}})}
-cv.addEventListener('pointermove',e=>{if(volando)return;const o=pick(e);if(o!==hover){brillo(hover,false);hover=o;brillo(o,true)}
+const MC=new THREE.Color(M);
+function brillo(o,on){if(!o)return;const id=o.userData.sec;
+ clickables.forEach(c=>{if(c.userData.sec!==id)return;c.traverse(m=>{if(!m.isMesh||!m.material.emissive)return;
+  const e0=m.userData.e0;
+  if(on){m.material.emissive.copy(e0?e0[0]:new THREE.Color(0)).lerp(MC,HOVER.mezcla);m.material.emissiveIntensity=e0?Math.max(e0[1],1):1}
+  else if(e0){m.material.emissive.copy(e0[0]);m.material.emissiveIntensity=e0[1]}
+  else{m.material.emissive.set(V);m.material.emissiveIntensity=.25}})})}
+cv.addEventListener('pointermove',e=>{if(volando)return;const o=pick(e);if((o&&o.userData.sec)!==(hover&&hover.userData.sec)){brillo(hover,false);brillo(o,true)}hover=o;
  cv.style.cursor=o?'pointer':'default';
  if(o){const s=SECCIONES.find(s=>s.id==o.userData.sec),r=stage.getBoundingClientRect();tip.style.display='block';tip.textContent=s.nombre+' · '+s.sub;
   tip.style.left=Math.min(e.clientX-r.left+14,r.width-tip.offsetWidth-6)+'px';tip.style.top=(e.clientY-r.top+14)+'px'}else tip.style.display='none'});
+let zt=ZOOM.ini,zc=1;
+cv.addEventListener('wheel',e=>{if(volando)return;e.preventDefault();const d=e.deltaMode===1?e.deltaY*33:e.deltaY;zt=Math.min(ZOOM.max,Math.max(ZOOM.min,zt+d*ZOOM.paso))},{passive:false});
 cv.addEventListener('pointerleave',()=>{tip.style.display='none'});
 cv.addEventListener('click',e=>{if(volando)return;const o=pick(e);if(o)abrir(o.userData.sec)});
 
@@ -249,7 +256,9 @@ cv.addEventListener('click',e=>{if(volando)return;const o=pick(e);if(o)abrir(o.u
   cam.position.lerpVectors(P0,P1,e);tg.lerpVectors(T0,T1,e);cam.fov=45-20*e;cam.updateProjectionMatrix();cam.lookAt(tg);
   if(u>=1)fin()}
  else{sx+=(mx-sx)*.05;sy+=(my-sy)*.05;const k=calma?0:1,a=Math.PI/4+(sx*PAR.a+Math.sin((t-tEnd)/4000)*.03)*k;
-  cam.position.set(Math.cos(a)*26.45,17.5+sy*PAR.y*k,Math.sin(a)*26.45);cam.lookAt(T1)}
+  zc+=(zt-zc)*.1;const R=26.45*zc;
+  cam.position.set(Math.cos(a)*R,(17.5+sy*PAR.y*k)*zc,Math.sin(a)*R);cam.lookAt(T1);
+  const pn=Math.max(0,1-zc);cam.translateX(sx*pn*5*k);cam.translateY(-sy*pn*3*k)}
  planet.rotation.y+=.0004;renderer.render(scene,cam)})(0);
 resize();
 </script>
